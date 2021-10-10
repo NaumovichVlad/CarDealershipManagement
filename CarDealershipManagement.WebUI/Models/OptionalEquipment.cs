@@ -7,7 +7,7 @@ namespace CarDealershipManagement.WebUI.Models
 {
     public class OptionalEquipment
     {
-        public int EquipmentId { get; set; }
+        public int OptionalEquipmentId { get; set; }
         public string EquipmentName { get; set; }
         public double Price { get; set; }
     }
