@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI.Models
+namespace CarDealershipManagement.Infrastructure.Entities
 {
-    public class Position
+    public class Position : EntityBase
     {
-        public int PositionId {  get; set; }
         public string PositionName {  get; set; }
     }
 }

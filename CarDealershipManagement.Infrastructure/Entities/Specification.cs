@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI.Models
+namespace CarDealershipManagement.Infrastructure.Entities
 {
-    public class Specification
+    public class Specification : EntityBase
     {
-        public int SpecificationId { get; set; }
         public string SpecificationName { get; set; }
         public double SpecificationValue {  get; set; }
     }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI.Models
+namespace CarDealershipManagement.Infrastructure.Entities
 {
-    public class OptionalEquipment
+    public class OptionalEquipment : EntityBase
     {
-        public int OptionalEquipmentId { get; set; }
         public string EquipmentName { get; set; }
         public double Price { get; set; }
     }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI.Models
+namespace CarDealershipManagement.Infrastructure.Entities
 {
-    public class Employee
+    public class Employee : EntityBase
     {
-        public int EmployeeId {  get; set; }
         public string Surname {  get; set; }
         public string Name {  get; set; }
         public string MiddleName {  get; set; }

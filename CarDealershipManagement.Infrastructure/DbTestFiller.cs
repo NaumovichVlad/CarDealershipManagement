@@ -1,10 +1,10 @@
-﻿using CarDealershipManagement.WebUI.Models;
+﻿using CarDealershipManagement.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI
+namespace CarDealershipManagement.Infrastructure
 {
     public class DbTestFiller : IDbTestFiller
     {
@@ -21,6 +21,7 @@ namespace CarDealershipManagement.WebUI
             {
                 brands[i] = new Brand()
                 {
+                    Id = i + 1,
                     BrandName = "brand_" + (i + 1)
                 };
             }
@@ -34,6 +35,7 @@ namespace CarDealershipManagement.WebUI
             {
                 positions[i] = new Position()
                 {
+                    Id = i + 1,
                     PositionName = "position_" + (i + 1)
                 };
             }
@@ -47,6 +49,7 @@ namespace CarDealershipManagement.WebUI
             {
                 manufacturers[i] = new Manufacturer()
                 {
+                    Id = i + 1,
                     ManufacturerName = "manufacturer_" + (i + 1),
                     Adress = GetRandomString(30),
                     Description = GetRandomString(50)
@@ -63,6 +66,7 @@ namespace CarDealershipManagement.WebUI
             {
                 specs[i] = new Specification()
                 {
+                    Id = i + 1,
                     SpecificationName = "specification_" + (i + 1),
                     SpecificationValue = random.NextDouble()
                 };
@@ -80,6 +84,7 @@ namespace CarDealershipManagement.WebUI
             {
                 cars[i] = new Car()
                 {
+                    Id = i + 1,
                     RegistrationNumber = GetRandomString(10),
                     BrandId = random.Next(1, oneCount),
                     ManufacturerId = random.Next(1, oneCount),
@@ -101,6 +106,7 @@ namespace CarDealershipManagement.WebUI
             {
                 carEquipments[i] = new CarEquipment()
                 {
+                    Id = i + 1,
                     CarId = random.Next(1, oneCount),
                     EquipmentId = random.Next(1, oneCount)
                 };
@@ -116,6 +122,7 @@ namespace CarDealershipManagement.WebUI
             {
                 carSpecs[i] = new CarSpecification()
                 {
+                    Id = i + 1,
                     CarId = random.Next(1, oneCount),
                     SpecificationId = random.Next(1, oneCount)
                 };
@@ -131,6 +138,7 @@ namespace CarDealershipManagement.WebUI
             {
                 customers[i] = new Customer()
                 {
+                    Id = i + 1,
                     Surname = GetRandomString(15),
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
@@ -149,6 +157,7 @@ namespace CarDealershipManagement.WebUI
             {
                 employees[i] = new Employee()
                 {
+                    Id = i + 1,
                     Surname = GetRandomString(15),
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
@@ -167,6 +176,7 @@ namespace CarDealershipManagement.WebUI
             {
                 equipments[i] = new OptionalEquipment()
                 {
+                    Id = i + 1,
                     EquipmentName = GetRandomString(15),
                     Price = random.NextDouble()
                 };
@@ -182,6 +192,7 @@ namespace CarDealershipManagement.WebUI
             {
                 orders[i] = new Order()
                 {
+                    Id = i + 1,
                     CustomerId = random.Next(1, oneCount),
                     CarId = random.Next(1, oneCount),
                     EmployeeId = random.Next(1, oneCount),
@@ -201,6 +212,7 @@ namespace CarDealershipManagement.WebUI
             {
                 users[i] = new User()
                 {
+                    Id = i + 1,
                     Login = GetRandomString(10),
                     Password = GetRandomString(10),
                     IsAdmin = false

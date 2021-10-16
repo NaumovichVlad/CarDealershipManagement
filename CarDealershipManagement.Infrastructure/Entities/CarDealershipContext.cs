@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI.Models
+namespace CarDealershipManagement.Infrastructure.Entities
 {
     public class CarDealershipContext : DbContext
     {
@@ -25,7 +25,7 @@ namespace CarDealershipManagement.WebUI.Models
         {
             dbContextOptionsBuilder.UseSqlServer("Server=NAVILLUSPC\\SQLEXPRESS;Database=cardealershipcourceproject;Trusted_Connection=True;");
         }
-
+        /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             IDbTestFiller filler = new DbTestFiller(10000, 100000);
@@ -40,7 +40,7 @@ namespace CarDealershipManagement.WebUI.Models
             modelBuilder.Entity<CarSpecification>().HasData(filler.GetTestCarSpecs());
             modelBuilder.Entity<Employee>().HasData(filler.GetTestEmployees());
             modelBuilder.Entity<Customer>().HasData(filler.GetTestCustomers());
-            modelBuilder.Entity<Order>().HasData(filler.GetTestOrders());
-        }
+            modelBuilder.Entity<Order>().HasData(filler.GetTestOrders());        }
+        */
     }
 }
