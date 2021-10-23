@@ -3,17 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
 {
-    public class Repository<T> : IRepository<T> 
+    public abstract class Repository<T> : IRepository<T> 
         where T : EntityBase
     {
-        private readonly CarDealershipContext _dbContext;
-        public Repository(CarDealershipContext dbContext)
+        private readonly DbContext _dbContext;
+        public Repository()
         {
-            _dbContext = dbContext;
+            _dbContext = new CarDealershipContext();
         }
         public virtual T GetById(int id)
         {
@@ -22,6 +21,10 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         public virtual IEnumerable<T> List()
         {
             return _dbContext.Set<T>().AsEnumerable();
+        }
+        public virtual IEnumerable<T> Take(int rows)
+        {
+            return _dbContext.Set<T>().Take(rows).AsEnumerable();
         }
         public virtual IEnumerable<T> List(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
