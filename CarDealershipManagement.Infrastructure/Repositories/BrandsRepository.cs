@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Infrastructure.Entities;
+﻿using CarDealershipManagement.Core.Models;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
 {

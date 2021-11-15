@@ -1,9 +1,9 @@
-﻿using CarDealershipManagement.Infrastructure.Entities;
+﻿using CarDealershipManagement.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace CarDealershipManagement.Infrastructure.Repositories
+namespace CarDealershipManagement.Core.Interfaces
 {
     public interface IRepository<T>
         where T : EntityBase

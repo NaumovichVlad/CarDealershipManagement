@@ -1,6 +1,6 @@
-﻿using DataAccess.Models;
+﻿using CarDealershipManagement.Core.Models;
 
-namespace DataAccess.Repositories
+namespace CarDealershipManagement.Infrastructure.Repositories
 {
     public class SpecificationsRepository : Repository<Specification>
     { }

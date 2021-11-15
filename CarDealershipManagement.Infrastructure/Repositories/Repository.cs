@@ -1,4 +1,6 @@
-﻿using CarDealershipManagement.Infrastructure.Entities;
+﻿using CarDealershipManagement.Core.Interfaces;
+using CarDealershipManagement.Core.Models;
+using CarDealershipManagement.Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

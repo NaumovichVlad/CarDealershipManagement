@@ -1,23 +1,17 @@
-﻿using CarDealershipManagement.Infrastructure.Entities;
+﻿using CarDealershipManagement.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CarDealershipManagement.Infrastructure
+namespace CarDealershipManagement.Core.Config
 {
-    public class DbTestFiller : IDbTestFiller
+    public static class DbTestFiller
     {
-        private int oneCount, manyCount;
-        public DbTestFiller(int oneCount, int manyCount)
+        private static readonly int _oneCount = 100000;
+        private static int _manyCount = 10000;
+
+        public static Brand[] GetTestBrands()
         {
-            this.oneCount = oneCount;
-            this.manyCount = manyCount;
-        }
-        public Brand[] GetTestBrands()
-        {
-            var brands = new Brand[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var brands = new Brand[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 brands[i] = new Brand()
                 {
@@ -28,10 +22,10 @@ namespace CarDealershipManagement.Infrastructure
             return brands;
         }
 
-        public Position[] GetTestPositions()
+        public static Position[] GetTestPositions()
         {
-            var positions = new Position[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var positions = new Position[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 positions[i] = new Position()
                 {
@@ -42,10 +36,10 @@ namespace CarDealershipManagement.Infrastructure
             return positions;
         }
 
-        public Manufacturer[] GetTestManufacturers()
+        public static Manufacturer[] GetTestManufacturers()
         {
-            var manufacturers = new Manufacturer[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var manufacturers = new Manufacturer[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 manufacturers[i] = new Manufacturer()
                 {
@@ -58,11 +52,11 @@ namespace CarDealershipManagement.Infrastructure
             return manufacturers;
         }
 
-        public Specification[] GetTestSpecs()
+        public static Specification[] GetTestSpecs()
         {
             var random = new Random();
-            var specs = new Specification[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var specs = new Specification[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 specs[i] = new Specification()
                 {
@@ -74,20 +68,20 @@ namespace CarDealershipManagement.Infrastructure
             return specs;
         }
 
-        public Car[] GetTestCars()
+        public static Car[] GetTestCars()
         {
             var random = new Random();
-            var cars = new Car[oneCount];
+            var cars = new Car[_oneCount];
             var picture = new byte[random.Next(100)];
             random.NextBytes(picture);
-            for (var i = 0; i < oneCount; i++)
+            for (var i = 0; i < _oneCount; i++)
             {
                 cars[i] = new Car()
                 {
                     Id = i + 1,
                     RegistrationNumber = GetRandomString(10),
-                    BrandId = random.Next(1, oneCount),
-                    ManufacturerId = random.Next(1, oneCount),
+                    BrandId = random.Next(1, _oneCount),
+                    ManufacturerId = random.Next(1, _oneCount),
                     Picture = picture,
                     Color = GetRandomString(10),
                     BodyTypeNumber = GetRandomString(10),
@@ -98,43 +92,43 @@ namespace CarDealershipManagement.Infrastructure
             return cars;
         }
 
-        public CarEquipment[] GetTestCarEquipments()
+        public static CarEquipment[] GetTestCarEquipments()
         {
             var random = new Random();
-            var carEquipments = new CarEquipment[manyCount];
-            for (var i = 0; i < manyCount; i++)
+            var carEquipments = new CarEquipment[_manyCount];
+            for (var i = 0; i < _manyCount; i++)
             {
                 carEquipments[i] = new CarEquipment()
                 {
                     Id = i + 1,
-                    CarId = random.Next(1, oneCount),
-                    EquipmentId = random.Next(1, oneCount)
+                    CarId = random.Next(1, _oneCount),
+                    EquipmentId = random.Next(1, _oneCount)
                 };
             }
             return carEquipments;
         }
 
-        public CarSpecification[] GetTestCarSpecs()
+        public static CarSpecification[] GetTestCarSpecs()
         {
             var random = new Random();
-            var carSpecs = new CarSpecification[manyCount];
-            for (var i = 0; i < manyCount; i++)
+            var carSpecs = new CarSpecification[_manyCount];
+            for (var i = 0; i < _manyCount; i++)
             {
                 carSpecs[i] = new CarSpecification()
                 {
                     Id = i + 1,
-                    CarId = random.Next(1, oneCount),
-                    SpecificationId = random.Next(1, oneCount)
+                    CarId = random.Next(1, _oneCount),
+                    SpecificationId = random.Next(1, _oneCount)
                 };
             }
             return carSpecs;
         }
 
-        public Customer[] GetTestCustomers()
+        public static Customer[] GetTestCustomers()
         {
             var random = new Random();
-            var customers = new Customer[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var customers = new Customer[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 customers[i] = new Customer()
                 {
@@ -149,11 +143,11 @@ namespace CarDealershipManagement.Infrastructure
             return customers;
         }
 
-        public Employee[] GetTestEmployees()
+        public static Employee[] GetTestEmployees()
         {
             var random = new Random();
-            var employees = new Employee[oneCount]; 
-            for (var i = 0; i < oneCount; i++)
+            var employees = new Employee[_oneCount]; 
+            for (var i = 0; i < _oneCount; i++)
             {
                 employees[i] = new Employee()
                 {
@@ -161,18 +155,18 @@ namespace CarDealershipManagement.Infrastructure
                     Surname = GetRandomString(15),
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
-                    PositionId = random.Next(1, oneCount),
-                    UserId = random.Next(1, oneCount),
+                    PositionId = random.Next(1, _oneCount),
+                    UserId = random.Next(1, _oneCount),
                 };
             }
             return employees;
         }
 
-        public OptionalEquipment[] GetTestOptionalEquipments()
+        public static OptionalEquipment[] GetTestOptionalEquipments()
         {
             var random = new Random();
-            var equipments = new OptionalEquipment[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var equipments = new OptionalEquipment[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 equipments[i] = new OptionalEquipment()
                 {
@@ -184,18 +178,18 @@ namespace CarDealershipManagement.Infrastructure
             return equipments;
         }
 
-        public Order[] GetTestOrders()
+        public static Order[] GetTestOrders()
         {
             var random = new Random();
-            var orders = new Order[manyCount];
-            for (var i = 0; i < manyCount; i++)
+            var orders = new Order[_manyCount];
+            for (var i = 0; i < _manyCount; i++)
             {
                 orders[i] = new Order()
                 {
                     Id = i + 1,
-                    CustomerId = random.Next(1, oneCount),
-                    CarId = random.Next(1, oneCount),
-                    EmployeeId = random.Next(1, oneCount),
+                    CustomerId = random.Next(1, _oneCount),
+                    CarId = random.Next(1, _oneCount),
+                    EmployeeId = random.Next(1, _oneCount),
                     OrderDate = GetRandomDate(),
                     OrderCompleteMark = Convert.ToBoolean(random.Next(0, 1)),
                     SaleDate = GetRandomDate(),
@@ -205,10 +199,10 @@ namespace CarDealershipManagement.Infrastructure
             return orders;
         }
 
-        public User[] GetTestUsers()
+        public static User[] GetTestUsers()
         {
-            var users = new User[oneCount];
-            for (var i = 0; i < oneCount; i++)
+            var users = new User[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 users[i] = new User()
                 {
@@ -221,7 +215,7 @@ namespace CarDealershipManagement.Infrastructure
             return users;
         }
 
-        private string GetRandomString(int stringSize)
+        private static string GetRandomString(int stringSize)
         {
             var randomString = string.Empty;
             var random = new Random();
@@ -237,7 +231,7 @@ namespace CarDealershipManagement.Infrastructure
             return randomString;
         }
 
-        private DateTime GetRandomDate()
+        private static DateTime GetRandomDate()
         {
             Random random = new Random();
             DateTime start = new DateTime(2020, 1, 1);

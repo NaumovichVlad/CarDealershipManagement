@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Infrastructure", "CarDealershipManagement.Infrastructure\CarDealershipManagement.Infrastructure.csproj", "{7E126DD2-FA5E-4695-AE45-5FAC993537D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDealershipManagement.Core", "CarDealershipManagement.Core\CarDealershipManagement.Core.csproj", "{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Core", "CarDealershipManagement.Core\CarDealershipManagement.Core.csproj", "{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

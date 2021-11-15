@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CarDealershipManagement.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarDealershipManagement.Infrastructure.Entities
+namespace CarDealershipManagement.Core.Models
 {
     public abstract class EntityBase
     {

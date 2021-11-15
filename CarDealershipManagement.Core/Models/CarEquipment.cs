@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.Infrastructure.Entities
+namespace CarDealershipManagement.Core.Models
 {
     public class CarEquipment : EntityBase
     {

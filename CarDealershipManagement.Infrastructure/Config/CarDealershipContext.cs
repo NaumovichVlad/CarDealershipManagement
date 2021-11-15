@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarDealershipManagement.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.Infrastructure.Entities
+namespace CarDealershipManagement.Infrastructure.Config
 {
     public class CarDealershipContext : DbContext
     {
@@ -32,22 +33,5 @@ namespace CarDealershipManagement.Infrastructure.Entities
             string connectionString = config.GetConnectionString("DefaultConnection");
             dbContextOptionsBuilder.UseSqlServer(connectionString);
         }
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            IDbTestFiller filler = new DbTestFiller(10000, 100000);
-            modelBuilder.Entity<Brand>().HasData(filler.GetTestBrands());
-            modelBuilder.Entity<Manufacturer>().HasData(filler.GetTestManufacturers());
-            modelBuilder.Entity<Specification>().HasData(filler.GetTestSpecs());
-            modelBuilder.Entity<OptionalEquipment>().HasData(filler.GetTestOptionalEquipments());
-            modelBuilder.Entity<User>().HasData(filler.GetTestUsers());
-            modelBuilder.Entity<Position>().HasData(filler.GetTestPositions());
-            modelBuilder.Entity<Car>().HasData(filler.GetTestCars());
-            modelBuilder.Entity<CarEquipment>().HasData(filler.GetTestCarEquipments());
-            modelBuilder.Entity<CarSpecification>().HasData(filler.GetTestCarSpecs());
-            modelBuilder.Entity<Employee>().HasData(filler.GetTestEmployees());
-            modelBuilder.Entity<Customer>().HasData(filler.GetTestCustomers());
-            modelBuilder.Entity<Order>().HasData(filler.GetTestOrders());        }
-        */
     }
 }
