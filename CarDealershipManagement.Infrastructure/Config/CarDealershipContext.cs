@@ -24,14 +24,8 @@ namespace CarDealershipManagement.Infrastructure.Config
         public DbSet<Specification> Specifications {  get; set; }
         public DbSet<User> Users {  get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
-        {
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("appsettings.json");
-            var config = builder.Build();
-            string connectionString = config.GetConnectionString("DefaultConnection");
-            dbContextOptionsBuilder.UseSqlServer(connectionString);
-        }
+        public CarDealershipContext (DbContextOptions<CarDealershipContext> options)
+            : base(options)
+        { }
     }
 }

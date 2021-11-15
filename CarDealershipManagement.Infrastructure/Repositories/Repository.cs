@@ -12,9 +12,9 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         where T : EntityBase
     {
         private readonly DbContext _dbContext;
-        public Repository()
+        public Repository(DbContextOptions<CarDealershipContext> options)
         {
-            _dbContext = new CarDealershipContext();
+            _dbContext = new CarDealershipContext(options);
         }
         public virtual T GetById(int id)
         {
