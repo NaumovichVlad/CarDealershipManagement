@@ -15,7 +15,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 brands[i] = new Brand()
                 {
-                    Id = i + 1,
                     BrandName = "brand_" + (i + 1)
                 };
             }
@@ -29,7 +28,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 positions[i] = new Position()
                 {
-                    Id = i + 1,
                     PositionName = "position_" + (i + 1)
                 };
             }
@@ -43,7 +41,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 manufacturers[i] = new Manufacturer()
                 {
-                    Id = i + 1,
                     ManufacturerName = "manufacturer_" + (i + 1),
                     Adress = GetRandomString(30),
                     Description = GetRandomString(50)
@@ -60,7 +57,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 specs[i] = new Specification()
                 {
-                    Id = i + 1,
                     SpecificationName = "specification_" + (i + 1),
                     SpecificationValue = random.NextDouble()
                 };
@@ -78,7 +74,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 cars[i] = new Car()
                 {
-                    Id = i + 1,
                     RegistrationNumber = GetRandomString(10),
                     BrandId = random.Next(1, _oneCount),
                     ManufacturerId = random.Next(1, _oneCount),
@@ -100,7 +95,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 carEquipments[i] = new CarEquipment()
                 {
-                    Id = i + 1,
                     CarId = random.Next(1, _oneCount),
                     EquipmentId = random.Next(1, _oneCount)
                 };
@@ -116,7 +110,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 carSpecs[i] = new CarSpecification()
                 {
-                    Id = i + 1,
                     CarId = random.Next(1, _oneCount),
                     SpecificationId = random.Next(1, _oneCount)
                 };
@@ -132,7 +125,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 customers[i] = new Customer()
                 {
-                    Id = i + 1,
                     Surname = GetRandomString(15),
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
@@ -146,17 +138,16 @@ namespace CarDealershipManagement.Core.Config
         public static Employee[] GetTestEmployees()
         {
             var random = new Random();
-            var employees = new Employee[_oneCount]; 
-            for (var i = 0; i < _oneCount; i++)
+            var employees = new Employee[_manyCount]; 
+            for (var i = 0; i < _manyCount; i++)
             {
                 employees[i] = new Employee()
                 {
-                    Id = i + 1,
                     Surname = GetRandomString(15),
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
-                    PositionId = random.Next(1, _oneCount),
-                    UserId = random.Next(1, _oneCount),
+                    PositionId = random.Next(1, _manyCount),
+                    UserId = random.Next(1, _manyCount),
                 };
             }
             return employees;
@@ -170,7 +161,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 equipments[i] = new OptionalEquipment()
                 {
-                    Id = i + 1,
                     EquipmentName = GetRandomString(15),
                     Price = random.NextDouble()
                 };
@@ -186,10 +176,9 @@ namespace CarDealershipManagement.Core.Config
             {
                 orders[i] = new Order()
                 {
-                    Id = i + 1,
                     CustomerId = random.Next(1, _oneCount),
                     CarId = random.Next(1, _oneCount),
-                    EmployeeId = random.Next(1, _oneCount),
+                    EmployeeId = random.Next(1, _manyCount),
                     OrderDate = GetRandomDate(),
                     OrderCompleteMark = Convert.ToBoolean(random.Next(0, 1)),
                     SaleDate = GetRandomDate(),
@@ -206,7 +195,6 @@ namespace CarDealershipManagement.Core.Config
             {
                 users[i] = new User()
                 {
-                    Id = i + 1,
                     Login = GetRandomString(10),
                     Password = GetRandomString(10),
                     IsAdmin = false

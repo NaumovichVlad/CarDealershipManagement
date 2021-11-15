@@ -5,10 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CarDealershipManagement.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CarDealershipManagement.WebUI.Middleware;
+using CarDealershipManagement.Core.Services;
+using CarDealershipManagement.Core.Interfaces;
+using CarDealershipManagement.Core.Models;
+using CarDealershipManagement.Infrastructure.Repositories;
 
 namespace CarDealershipManagement.WebUI
 {
@@ -27,6 +28,9 @@ namespace CarDealershipManagement.WebUI
             services.AddControllersWithViews();
             var connectionString = Configuration.GetConnectionString("SqlConnection");
             services.AddDbContext(connectionString);
+            services.AddTransient<ICarsService, CarsService>();
+            services.AddControllersWithViews();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +48,7 @@ namespace CarDealershipManagement.WebUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseDbInitializer();
             app.UseRouting();
 
             app.UseAuthorization();
