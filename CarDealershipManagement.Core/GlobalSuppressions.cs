@@ -5,5 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Interoperability", "CA1416:Проверка совместимости платформы", Justification = "<Ожидание>", Scope = "member", Target = "~M:CarDealershipManagement.Core.Services.CarsService.InitializeImage(System.Byte[])~System.Drawing.Image")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Проверка совместимости платформы", Justification = "<Ожидание>", Scope = "member", Target = "~M:CarDealershipManagement.Core.Config.DbTestFiller.GetTestCars~CarDealershipManagement.Core.Models.Car[]")]
