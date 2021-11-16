@@ -18,7 +18,6 @@ namespace CarDealershipManagement.Infrastructure.Config
         public DbSet<Order> Orders {  get; set; }
         public DbSet<Position> Positions {  get; set; }
         public DbSet<Specification> Specifications {  get; set; }
-
         public CarDealershipContext(DbContextOptions options) : base(options)
         { }
     }
