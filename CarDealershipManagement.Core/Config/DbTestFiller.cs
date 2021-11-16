@@ -1,12 +1,14 @@
 ﻿using CarDealershipManagement.Core.Models;
 using System;
+using System.Drawing;
+using System.IO;
 
 namespace CarDealershipManagement.Core.Config
 {
     public static class DbTestFiller
     {
-        private static readonly int _oneCount = 100000;
-        private static int _manyCount = 10000;
+        private static readonly int _oneCount = 1000;
+        private static readonly int _manyCount = 100;
 
         public static Brand[] GetTestBrands()
         {
@@ -68,16 +70,22 @@ namespace CarDealershipManagement.Core.Config
         {
             var random = new Random();
             var cars = new Car[_oneCount];
-            var picture = new byte[random.Next(100)];
-            random.NextBytes(picture);
+            var images = Directory.GetFiles(@"../../Images");
             for (var i = 0; i < _oneCount; i++)
             {
+                var image = Image.FromFile(images[i]);
+                byte[] imageBytes;
+                using (MemoryStream ms = new())
+                {
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    imageBytes = ms.ToArray();
+                }
                 cars[i] = new Car()
                 {
                     RegistrationNumber = GetRandomString(10),
                     BrandId = random.Next(1, _oneCount),
                     ManufacturerId = random.Next(1, _oneCount),
-                    Picture = picture,
+                    Picture = imageBytes,
                     Color = GetRandomString(10),
                     BodyTypeNumber = GetRandomString(10),
                     EngineNumber = GetRandomString(10),
@@ -119,7 +127,6 @@ namespace CarDealershipManagement.Core.Config
 
         public static Customer[] GetTestCustomers()
         {
-            var random = new Random();
             var customers = new Customer[_oneCount];
             for (var i = 0; i < _oneCount; i++)
             {
@@ -214,15 +221,15 @@ namespace CarDealershipManagement.Core.Config
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
                 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             };
-            for (int i = 0; i < symbols.Length; i++)
+            for (int i = 0; i < stringSize; i++)
                 randomString += symbols[random.Next(symbols.Length)];
             return randomString;
         }
 
         private static DateTime GetRandomDate()
         {
-            Random random = new Random();
-            DateTime start = new DateTime(2020, 1, 1);
+            Random random = new();
+            DateTime start = new(2020, 1, 1);
             int range = (DateTime.Today - start).Days;
             return start.AddDays(random.Next(range));
         }

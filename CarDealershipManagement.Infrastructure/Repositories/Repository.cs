@@ -11,28 +11,28 @@ namespace CarDealershipManagement.Infrastructure.Repositories
     public abstract class Repository<T> : IRepository<T> 
         where T : EntityBase
     {
-        private readonly DbContext _dbContext;
-        public Repository(DbContextOptions<CarDealershipContext> options)
+        private readonly CarDealershipContext _dbContext;
+        public Repository(CarDealershipContext dbContext)
         {
-            _dbContext = new CarDealershipContext(options);
+            _dbContext = dbContext;
         }
         public virtual T GetById(int id)
         {
             return _dbContext.Set<T>().Find(id);
         }
-        public virtual IEnumerable<T> List()
+        public virtual IQueryable<T> List()
         {
-            return _dbContext.Set<T>().AsEnumerable();
+            return _dbContext.Set<T>().AsQueryable();
         }
-        public virtual IEnumerable<T> Take(int rows)
+        public virtual IQueryable<T> Take(int rows)
         {
-            return _dbContext.Set<T>().Take(rows).AsEnumerable();
+            return _dbContext.Set<T>().Take(rows).AsQueryable();
         }
-        public virtual IEnumerable<T> List(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public virtual IQueryable<T> List(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
             return _dbContext.Set<T>()
-                   .Where(predicate)
-                   .AsEnumerable();
+                   .Where(predicate).
+                   AsQueryable();
         }
         public void Insert(T entity)
         {

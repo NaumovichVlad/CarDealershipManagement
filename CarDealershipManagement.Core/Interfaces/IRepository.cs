@@ -1,6 +1,7 @@
 ﻿using CarDealershipManagement.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CarDealershipManagement.Core.Interfaces
@@ -9,9 +10,9 @@ namespace CarDealershipManagement.Core.Interfaces
         where T : EntityBase
     {
         T GetById(int id);
-        IEnumerable<T> List();
-        IEnumerable<T> Take(int rows);
-        IEnumerable<T> List(Expression<Func<T, bool>> predicate);
+        IQueryable<T> List();
+        IQueryable<T> Take(int rows);
+        IQueryable<T> List(Expression<Func<T, bool>> predicate);
         void Insert(T entity);
         void Delete(T entity);
         void Update(T entity);

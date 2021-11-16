@@ -1,38 +1,27 @@
-﻿
-using CarDealershipManagement.WebUI.Models;
+﻿using CarDealershipManagement.Core.Services;
+using CarDealershipManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CarDealershipManagement.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ICarsService _carsService;
+        public HomeController(ICarsService carsService)
         {
-            _logger = logger;
+            _carsService = carsService;
         }
-
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var cars = _carsService.GetCars().Select(c => new CarForCatalogViewModel()
+            {
+                Id = c.Id,
+                BrandName = c.BrandName,
+                ManufacturerName = c.ManufacturerName,
+                Price = c.Price,
+            });
+            return View(new CarsForCatalogViewModel() { Cars = cars.ToList() });
         }
     }
 }

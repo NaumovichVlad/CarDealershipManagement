@@ -7,7 +7,7 @@ namespace CarDealershipManagement.Core.Services
 {
     public class UsersService
     {
-        private IRepository<User> _usersRepository;
+        private readonly IRepository<User> _usersRepository;
         public UsersService(IRepository<User> usersRepository)
         {
             _usersRepository = usersRepository;
