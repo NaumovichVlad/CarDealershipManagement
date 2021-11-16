@@ -21,27 +21,20 @@ namespace CarDealershipManagement.Core.Services
 
         public List<CarBusiness> GetCars()
         {
-            var cars = _carsRepository.Take(10).Select(c =>
+            var cars = _carsRepository.Take(6).Select(c =>
             new CarBusiness()
             {
                 Id = c.Id,
                 RegistrationNumber = c.RegistrationNumber,
                 BrandName = c.Brand.BrandName,
                 ManufacturerName = c.Manufacturer.ManufacturerName,
-                Picture = InitializeImage(c.Picture),
+                Picture = c.Picture,
                 Color = c.Color,
                 BodyTypeNumber = c.BodyTypeNumber,
                 EngineNumber = c.EngineNumber,
-                Price = c.Price,
+                Price = Math.Round(c.Price, 2),
             });
             return cars.ToList();
-        }
-
-        
-        private static Image InitializeImage(byte[] imageBytes)
-        {
-            using var ms = new MemoryStream(imageBytes);
-            return Image.FromStream(ms);
         }
     }
 }

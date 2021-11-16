@@ -70,10 +70,10 @@ namespace CarDealershipManagement.Core.Config
         {
             var random = new Random();
             var cars = new Car[_oneCount];
-            var images = Directory.GetFiles(@"../../Images");
+            var images = Directory.GetFiles(@"../Images");
             for (var i = 0; i < _oneCount; i++)
             {
-                var image = Image.FromFile(images[i]);
+                var image = Image.FromFile(images[i % images.Length]);
                 byte[] imageBytes;
                 using (MemoryStream ms = new())
                 {

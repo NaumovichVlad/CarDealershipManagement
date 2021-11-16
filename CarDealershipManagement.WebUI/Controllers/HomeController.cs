@@ -14,10 +14,12 @@ namespace CarDealershipManagement.WebUI.Controllers
         }
         public IActionResult Index()
         {
+            
             var cars = _carsService.GetCars().Select(c => new CarForCatalogViewModel()
             {
                 Id = c.Id,
                 BrandName = c.BrandName,
+                Picture = c.Picture,
                 ManufacturerName = c.ManufacturerName,
                 Price = c.Price,
             });
