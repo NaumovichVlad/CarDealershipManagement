@@ -35,6 +35,7 @@ namespace CarDealershipManagement.WebUI.Middleware
             db.SaveChanges();
             db.Positions.AddRange(DbTestFiller.GetTestPositions());
             db.SaveChanges();
+            db.Users.AddRange(DbTestFiller.GetTestUsers());
             db.SaveChanges();
             db.Employees.AddRange(DbTestFiller.GetTestEmployees());
             db.SaveChanges();

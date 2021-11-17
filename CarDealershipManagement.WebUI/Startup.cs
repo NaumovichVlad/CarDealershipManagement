@@ -10,8 +10,6 @@ using CarDealershipManagement.Core.Services;
 using CarDealershipManagement.Core.Interfaces;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Identity;
-using AutoMapper;
 
 namespace CarDealershipManagement.WebUI
 {
@@ -29,10 +27,8 @@ namespace CarDealershipManagement.WebUI
         {
             var connectionString = Configuration.GetConnectionString("SqlConnection");
             services.AddDbContext(connectionString);
-            services.AddUserMapper();
             services.AddTransient<ICarsService, CarsService>();
             services.AddScoped(typeof(IRepository<Car>), typeof(CarsRepository));
-            services.AddIdentity<User, IdentityRole>();
             services.AddControllersWithViews();
             services.AddMvc();
         }
@@ -54,7 +50,7 @@ namespace CarDealershipManagement.WebUI
             app.UseStaticFiles();
             app.UseDbInitializer();
             app.UseRouting();
-            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
