@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using CarDealershipManagement.Infrastructure.Config;
-using CarDealershipManagement.Infrastructure.Mapping;
+﻿using CarDealershipManagement.Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,14 +11,5 @@ namespace CarDealershipManagement.Infrastructure
             services.AddDbContext<CarDealershipContext>(options =>
                 options.UseSqlServer(connectionString));
 
-        public static void AddUserMapper(this IServiceCollection services)
-        {
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new DataProfile());
-            });
-            var mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
-        }
     }
 }
