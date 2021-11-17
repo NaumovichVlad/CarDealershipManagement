@@ -1,11 +1,9 @@
 ﻿using CarDealershipManagement.Core.Models;
-using CarDealershipManagement.Infrastructure.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarDealershipManagement.Infrastructure.Config
 {
-    public class CarDealershipContext : IdentityDbContext<AppUser>
+    public class CarDealershipContext : DbContext
     {
         public DbSet<Brand> Brands {  get; set; }
         public DbSet<Car> Cars {  get; set; }
@@ -18,8 +16,10 @@ namespace CarDealershipManagement.Infrastructure.Config
         public DbSet<Order> Orders {  get; set; }
         public DbSet<Position> Positions {  get; set; }
         public DbSet<Specification> Specifications {  get; set; }
+        public DbSet<User> Users {  get; set; }
 
-        public CarDealershipContext(DbContextOptions options) : base(options)
+        public CarDealershipContext (DbContextOptions<CarDealershipContext> options)
+            : base(options)
         { }
     }
 }
