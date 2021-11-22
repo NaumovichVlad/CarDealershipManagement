@@ -20,6 +20,16 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                            <p>@User.Identity.Name</p>
+                            <a asp-controller="Account" asp-action="Logout">Выход</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login">Вход</a>
+                                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                            }
                         </li>
                     </ul>
                 </div>

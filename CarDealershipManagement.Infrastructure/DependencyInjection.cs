@@ -39,6 +39,6 @@ namespace CarDealershipManagement.Infrastructure
         }
 
         public static IdentityBuilder AddIdentity(this IServiceCollection services) =>
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<CarDealershipContext>();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<CarDealershipContext>();
     }
 }

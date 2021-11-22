@@ -154,7 +154,7 @@ namespace CarDealershipManagement.Core.Config
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
                     PositionId = random.Next(1, _manyCount),
-                    UserId = random.Next(1, _manyCount),
+                
                 };
             }
             return employees;
@@ -193,21 +193,6 @@ namespace CarDealershipManagement.Core.Config
                 };
             }
             return orders;
-        }
-
-        public static User[] GetTestUsers()
-        {
-            var users = new User[_oneCount];
-            for (var i = 0; i < _oneCount; i++)
-            {
-                users[i] = new User()
-                {
-                    UserName = GetRandomString(10),
-                    Password = GetRandomString(10),
-                    IsAdmin = false
-                };
-            }
-            return users;
         }
 
         private static string GetRandomString(int stringSize)
