@@ -202,7 +202,7 @@ namespace CarDealershipManagement.Core.Config
             {
                 users[i] = new User()
                 {
-                    Login = GetRandomString(10),
+                    UserName = GetRandomString(10),
                     Password = GetRandomString(10),
                     IsAdmin = false
                 };

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CarDealershipManagement.Infrastructure;
 using CarDealershipManagement.WebUI.Middleware;
@@ -10,6 +9,9 @@ using CarDealershipManagement.Core.Services;
 using CarDealershipManagement.Core.Interfaces;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using CarDealershipManagement.Infrastructure.Entities;
 
 namespace CarDealershipManagement.WebUI
 {
@@ -27,8 +29,10 @@ namespace CarDealershipManagement.WebUI
         {
             var connectionString = Configuration.GetConnectionString("SqlConnection");
             services.AddDbContext(connectionString);
+            services.AddRepositories();
+            services.AddUserMapper();
+            services.AddIdentity();
             services.AddTransient<ICarsService, CarsService>();
-            services.AddScoped(typeof(IRepository<Car>), typeof(CarsRepository));
             services.AddControllersWithViews();
             services.AddMvc();
         }

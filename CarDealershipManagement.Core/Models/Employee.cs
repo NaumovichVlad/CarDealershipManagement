@@ -11,7 +11,7 @@ namespace CarDealershipManagement.Core.Models
         public string Name {  get; set; }
         public string MiddleName {  get; set; }
         public int PositionId {  get; set; }
-        public int UserId {  get; set; }
+        public string UserId {  get; set; }
         public User User {  get; set; }
         public Position Position {  get; set; }
     }
