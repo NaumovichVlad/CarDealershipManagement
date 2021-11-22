@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using CarDealershipManagement.Core.Interfaces;
+﻿using CarDealershipManagement.Core.Interfaces;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Config;
-using CarDealershipManagement.Infrastructure.Entities;
-using CarDealershipManagement.Infrastructure.Mapping;
 using CarDealershipManagement.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,19 +23,10 @@ namespace CarDealershipManagement.Infrastructure
             services.AddScoped(typeof(IRepository<Customer>), typeof(CustomersRepository));
             services.AddScoped(typeof(IRepository<Employee>), typeof(EmployeesRepository));
             services.AddScoped(typeof(IRepository<Order>), typeof(OrdersRepository));
-        }
-
-        public static void AddUserMapper(this IServiceCollection services)
-        {
-            var config = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new UserProfile());
-            });
-            IMapper mapper = config.CreateMapper();
-            services.AddSingleton(mapper);
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
         }
 
         public static IdentityBuilder AddIdentity(this IServiceCollection services) =>
-            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<CarDealershipContext>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<CarDealershipContext>();
     }
 }

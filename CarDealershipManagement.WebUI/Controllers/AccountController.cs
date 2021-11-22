@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Infrastructure.Entities;
+﻿using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +9,10 @@ namespace CarDealershipManagement.WebUI.Controllers
     public class AccountController : Controller
     {
         
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -27,7 +27,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = new() { UserName = model.UserName};
+                User user = new() { UserName = model.UserName};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

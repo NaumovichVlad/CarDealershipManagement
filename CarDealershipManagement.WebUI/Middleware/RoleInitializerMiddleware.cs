@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Infrastructure.Entities;
+﻿using CarDealershipManagement.Core.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -22,7 +22,7 @@ namespace CarDealershipManagement.WebUI.Middleware
         }
         public static async Task InitializeAsync(IServiceProvider serviceProvider)
         {
-            var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             string adminUserName = "admin";
             string password = "Admin_01";
@@ -34,9 +34,13 @@ namespace CarDealershipManagement.WebUI.Middleware
             {
                 await roleManager.CreateAsync(new IdentityRole("employee"));
             }
+            if (await roleManager.FindByNameAsync("customer") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("customer"));
+            }
             if (await userManager.FindByNameAsync(adminUserName) == null)
             {
-                AppUser admin = new AppUser { UserName = adminUserName };
+                User admin = new() { UserName = adminUserName };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
