@@ -12,6 +12,7 @@ namespace CarDealershipManagement.Core.Interfaces
         T GetById(int id);
         IQueryable<T> List();
         IQueryable<T> Take(int rows);
+        IQueryable<T> Skip(int rows);
         IQueryable<T> List(Expression<Func<T, bool>> predicate);
         void Insert(T entity);
         void Delete(T entity);

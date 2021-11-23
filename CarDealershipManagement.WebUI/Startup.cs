@@ -6,6 +6,7 @@ using CarDealershipManagement.Infrastructure;
 using CarDealershipManagement.WebUI.Middleware;
 using CarDealershipManagement.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CarDealershipManagement.WebUI
 {
@@ -28,6 +29,11 @@ namespace CarDealershipManagement.WebUI
             services.AddTransient<ICarsService, CarsService>();
             services.AddControllersWithViews();
             services.AddMvc();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,10 +52,10 @@ namespace CarDealershipManagement.WebUI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseDbInitializer();
-            app.UseRoleInitializer();
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

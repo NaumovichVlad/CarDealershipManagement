@@ -9,17 +9,17 @@ namespace CarDealershipManagement.Infrastructure.Config
 {
     public class CarDealershipContext : IdentityDbContext<User>
     {
-        public DbSet<Brand> Brands {  get; set; }
-        public DbSet<Car> Cars {  get; set; }
-        public DbSet<CarEquipment> CarEquipments {  get; set; }
-        public DbSet<CarSpecification> CarSpecifications {  get; set; }
-        public DbSet<Customer> Customers {  get; set; }
-        public DbSet<Employee> Employees {  get; set; }
-        public DbSet<Manufacturer> Manufacturers {  get; set; }
-        public DbSet<OptionalEquipment> OptionalEquipments {  get; set; }
-        public DbSet<Order> Orders {  get; set; }
-        public DbSet<Position> Positions {  get; set; }
-        public DbSet<Specification> Specifications {  get; set; }
+        public DbSet<Brand> Brands => Set<Brand>();
+        public DbSet<Car> Cars => Set<Car>();
+        public DbSet<CarEquipment> CarEquipments => Set<CarEquipment>();
+        public DbSet<CarSpecification> CarSpecifications => Set<CarSpecification>();
+        public DbSet<Customer> Customers => Set<Customer>();
+        public DbSet<Employee> Employees => Set<Employee>();
+        public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
+        public DbSet<OptionalEquipment> OptionalEquipments => Set<OptionalEquipment>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<Position> Positions => Set<Position>();
+        public DbSet<Specification> Specifications => Set<Specification>();
 
         public CarDealershipContext(DbContextOptions<CarDealershipContext> options)
             : base(options)

@@ -21,8 +21,7 @@ namespace CarDealershipManagement.Core.Services
 
         public List<CarBusiness> GetCars()
         {
-            var cars = _carsRepository.Take(6).Select(c =>
-            new CarBusiness()
+            return _carsRepository.List().Select(c => new CarBusiness()
             {
                 Id = c.Id,
                 RegistrationNumber = c.RegistrationNumber,
@@ -33,8 +32,29 @@ namespace CarDealershipManagement.Core.Services
                 BodyTypeNumber = c.BodyTypeNumber,
                 EngineNumber = c.EngineNumber,
                 Price = Math.Round(c.Price, 2),
-            });
-            return cars.ToList();
+            }).ToList();
+        }
+
+        public List<CarBusiness> GetCarsRange(int start, int end)
+        {
+            return _carsRepository.Skip(start).Take(end - start)
+                .Select(c => new CarBusiness()
+                {
+                    Id = c.Id,
+                    RegistrationNumber = c.RegistrationNumber,
+                    BrandName = c.Brand.BrandName,
+                    ManufacturerName = c.Manufacturer.ManufacturerName,
+                    Picture = c.Picture,
+                    Color = c.Color,
+                    BodyTypeNumber = c.BodyTypeNumber,
+                    EngineNumber = c.EngineNumber,
+                    Price = Math.Round(c.Price, 2),
+                }).ToList();
+        }
+
+        public int Count()
+        {
+            return _carsRepository.List().Count();
         }
     }
 }

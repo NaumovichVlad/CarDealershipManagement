@@ -3,7 +3,6 @@ using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
@@ -22,17 +21,20 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         }
         public virtual IQueryable<T> List()
         {
-            return _dbContext.Set<T>().AsQueryable();
+            return _dbContext.Set<T>();
         }
         public virtual IQueryable<T> Take(int rows)
         {
-            return _dbContext.Set<T>().Take(rows).AsQueryable();
+            return _dbContext.Set<T>().Take(rows);
+        }
+        public virtual IQueryable<T> Skip(int rows)
+        {
+            return _dbContext.Set<T>().Skip(rows);
         }
         public virtual IQueryable<T> List(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
             return _dbContext.Set<T>()
-                   .Where(predicate).
-                   AsQueryable();
+                   .Where(predicate);
         }
         public void Insert(T entity)
         {

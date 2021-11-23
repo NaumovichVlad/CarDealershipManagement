@@ -3,23 +3,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div>
-	<div class="col-md-8 products">
-		<div class="row">
-			@foreach (var car in Model.Cars)
-			{
-				<div class="col-sm-4">
-					<div class="product">
-						<div class="product-img">
-							<a href="#">@Html.Raw("<img src=\"data:image/jpeg;base64," 
-								+ Convert.ToBase64String(@car.Picture) + "\" />")</a>
-						</div>
-						<p class="product-title">@car.BrandName</p>
-						<p class="product-desc">@car.ManufacturerName</p>
-						<p class="product-price">Цена @car.Price BYN</p>
-					</div>
-				</div>
-			}
-		</div>
+<div class="pt-3">
+	<div class="card-columns">
+		@foreach (var car in Model.Cars)
+		{
+			<div class="card">
+				@Html.Raw("<img class=\"card-img-top\" src=\"data:image/jpeg;base64," 
+											+ Convert.ToBase64String(@car.Picture) + "\" alt=\"Card image cap\"/>")
+			  <div class="card-body">
+				<h4 class="card-title">@car.BrandName</h4>
+				<p class="card-text">@car.ManufacturerName</p>
+				<a href="#!" class="btn btn-primary">Подробнее</a>
+			  </div>
+			</div>
+		}
 	</div>
 </div>
+@{
+	var prevDisabled = !Model.Page.HasPreviousPage ? "disabled" : "";
+	var nextDisabled = !Model.Page.HasNextPage ? "disabled" : "";
+}
+
+<ul class="pagination pagination-sm">
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="1"
+		class="btn btn-default page-link @prevDisabled">
+		Первая
+		</a>
+	</li>
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
+		class="btn btn-default page-link @prevDisabled">
+		<
+		</a>
+	</li>
+	<li class="page-item disabled"><a class="page-link">Cтраница @Model.Page.PageNumber</a></li>
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
+		class="btn btn-default page-link @nextDisabled">
+		>
+		</a>
+	</li>
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="@(Model.Page.TotalPages)"
+		class="btn btn-default page-link @nextDisabled">
+		Последняя
+		</a>
+	</li>
+</ul>

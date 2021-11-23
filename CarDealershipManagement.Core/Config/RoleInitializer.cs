@@ -1,29 +1,15 @@
 ﻿using CarDealershipManagement.Core.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.WebUI.Middleware
+namespace CarDealershipManagement.Core.Config
 {
-    public class RoleInitializerMiddleWare
+    public class RoleInitializer
     {
-        private readonly RequestDelegate _next;
-        public RoleInitializerMiddleWare(RequestDelegate next)
+        public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _next = next;
-        }
-        public async Task<Task> InvokeAsync(HttpContext context, IServiceProvider serviceProvider)
-        {
-            await InitializeAsync(serviceProvider);
-            return _next.Invoke(context);
-        }
-        public static async Task InitializeAsync(IServiceProvider serviceProvider)
-        {
-            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             string adminUserName = "admin";
             string password = "Admin_01";
             if (await roleManager.FindByNameAsync("admin") == null)
@@ -49,14 +35,5 @@ namespace CarDealershipManagement.WebUI.Middleware
             }
         }
         
-    }
-
-    public static class RoleInitializerExtensions
-    {
-        public static IApplicationBuilder UseRoleInitializer(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<RoleInitializerMiddleWare>();
-        }
-
     }
 }

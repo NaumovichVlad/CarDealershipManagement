@@ -1,24 +1,29 @@
 ﻿@model CarDealershipManagement.WebUI.ViewModels.LoginViewModel
  
-<h2>Вход в приложение</h2>
-<form method="post" asp-controller="Account" asp-action="Login"
-      asp-route-returnUrl="@Model.ReturnUrl">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="UserName"></label><br />
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="RememberMe"></label><br />
-        <input asp-for="RememberMe" />
-    </div>
-    <div>
-        <input type="submit" value="Войти" />
-    </div>
-</form>
+<h2 class="pt-5">Вход в приложение</h2>
+<div class="">
+    <form method="post" asp-controller="Account" asp-action="Login"
+          asp-route-returnUrl="@Model.ReturnUrl">
+      <fieldset>
+        <div class="form-group">
+          <label asp-for="UserName">Логин</label>
+          <input asp-for="UserName"  class="form-control w-25"/>
+          <span asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Пароль</label><br />
+            <input asp-for="Password" class="form-control w-25"/>
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" asp-for="RememberMe" type="checkbox">
+          <label class="form-check-label" asp-for="RememberMe">
+            Запомнить
+          </label><br/>
+        </div>
+        <div class="pt-3">
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </div>
+      </fieldset>
+    </form>
+</div>

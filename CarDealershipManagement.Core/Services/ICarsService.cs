@@ -6,5 +6,7 @@ namespace CarDealershipManagement.Core.Services
     public interface ICarsService
     {
         List<CarBusiness> GetCars();
+        List<CarBusiness> GetCarsRange(int start, int end);
+        int Count();
     }
 }
