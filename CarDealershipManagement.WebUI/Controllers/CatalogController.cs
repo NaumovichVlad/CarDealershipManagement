@@ -31,5 +31,12 @@ namespace CarDealershipManagement.WebUI.Controllers
             var car = _carService.GetCarById(carId);
             return View(new CatalogViewModel { Car = car, Equipments = equipment, Specifications = specification });
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult RouteToHome(int id)
+        {
+            return RedirectToAction("Index", "Home", new {});
+        }
     }
 }

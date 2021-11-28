@@ -2,7 +2,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+<form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button asp-controller="CatalogSearch" asp-action="Search" value="@ViewData["CurrentFilter"]"  class="btn bg-primary text-white" type="submit">Search</button>
+</form>
 <div class="pt-3">
 	<div class="card-columns">
 		@foreach (var car in Model.Cars)
@@ -12,8 +15,8 @@
 											+ Convert.ToBase64String(@car.Picture) + "\" alt=\"Card image cap\"/>")
 			  <div class="card-body">
 				<h4 class="card-title">@car.BrandName</h4>
-				<p class="card-text">@car.ManufacturerName</p>
-				<a asp-action="RouteToDetailsPage" asp-route-id="@car.Id" class="btn btn-primary">Подробнее</a>
+				<p class="card-text">Цена: @car.Price USD</p>
+					<a asp-action="RouteToDetailsPage" asp-route-id="@car.Id" class="btn btn-primary">Подробнее</a>
 			  </div>
 			</div>
 		}

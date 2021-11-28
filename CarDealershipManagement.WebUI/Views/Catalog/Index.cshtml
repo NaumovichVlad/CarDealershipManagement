@@ -2,23 +2,60 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-        <th>#</th>
-        <th>Характеристика автомобиля</th>
-        <th>Её значение</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var spec in Model.Specifications)
-        {
-            <tr>
-                <td>@spec.SpecificationName</td>
-                <td>@spec.SpecificationValue</td>
-            </tr>     
-        }
-    </tbody>
-</table>
+<div>
+    <div class="d-flex flex-row p-2">
+        <div class="w-25">
+            @Html.Raw("<img class=\"img-fluid\" src=\"data:image/jpeg;base64," 
+											+ Convert.ToBase64String(@Model.Car.Picture) + "\" alt=\"Card image cap\"/>")
+        </div>
+        <div class="m-3">
+            <h2>@Model.Car.BrandName</h2>
+            <h4>@Model.Car.ManufacturerName</h4>
+            <h6>Цвет: @Model.Car.Color</h6>
+            <h6>Стоимость: @Model.Car.Price USD</h6>
+            <div class="pt-2">
+                <a asp-action="RouteToDetailsPage" asp-route-id="@Model.Car.Id" class="btn btn-primary">В корзину</a>
+                <a asp-action="RouteToHome" class="btn btn-secondary ">Назад</a>
+            </div>
+        </div>
+    </div>
+    <div class="p-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Характеристика автомобиля</th>
+                    <th>Её значение</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var spec in Model.Specifications)
+                {
+                <tr>
+                    <td>@spec.SpecificationName</td>
+                    <td>@spec.SpecificationValue</td>
+                </tr>     
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="p-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Установленное оборудование</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var equipment in Model.Equipments)
+                {
+                <tr>
+                    <td>@equipment.EquipmentName</td>
+                    <td>@equipment.EquipmentPrice</td>
+                </tr>     
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 

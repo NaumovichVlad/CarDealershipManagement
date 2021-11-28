@@ -97,7 +97,6 @@ namespace CarDealershipManagement.Core.Config
 
         public static CarEquipment[] GetTestCarEquipments()
         {
-            var random = new Random();
             var carEquipments = new CarEquipment[_oneCount];
             for (var i = 0; i < _oneCount; i++)
             {

@@ -29,7 +29,8 @@ namespace CarDealershipManagement.Core.Services
 
         public List<CarSpecificationBusiness> GetCarSpecificationsByCarId(int carId)
         {
-            var carSpecifications = _repository.ListWithIncludes(s => s.Specification).Where(s => s.CarId == carId).Select(s => new CarSpecificationBusiness
+            var carSpecifications = _repository.ListWithIncludes(s => s.CarId == carId, s => s.Specification)
+                .Select(s => new CarSpecificationBusiness
             {
                 CarId = s.CarId,
                 SpecificationId = s.SpecificationId,

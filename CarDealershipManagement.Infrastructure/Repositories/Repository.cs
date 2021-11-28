@@ -13,8 +13,8 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         where T : EntityBase
     {
         private readonly CarDealershipContext _dbContext;
-        private DbSet<T> _dbSet;
-        public Repository(CarDealershipContext dbContext, params Expression<Func<T, object>>[] includeProperties)
+        private readonly DbSet<T> _dbSet;
+        public Repository(CarDealershipContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = dbContext.Set<T>();
