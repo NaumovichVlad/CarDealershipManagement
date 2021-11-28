@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Core.Services;
+﻿using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +20,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             int pageSize = 6;
             var skip = (pageNumber - 1) * pageSize;
             
-            var cars = _carsService.GetCarsRange(skip, skip + pageSize).Select(c => new CarForCatalogViewModel()
+            var cars = _carsService.GetCarsRange(skip, skip + pageSize).Select(c => new CarHomeViewModel()
             {
                 Id = c.Id,
                 BrandName = c.BrandName,
@@ -29,8 +29,15 @@ namespace CarDealershipManagement.WebUI.Controllers
                 Price = c.Price,
             }).ToList();
             PageViewModel pageViewModel = new(_carsService.Count(), pageNumber, pageSize);
-            var model = new CarsForCatalogViewModel { Page = pageViewModel, Cars = cars };
+            var model = new CarsHomeViewModel { Page = pageViewModel, Cars = cars };
             return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult RouteToDetailsPage(int id)
+        {
+            return RedirectToAction("Index", "Catalog", new {CarId = id});
         }
     }
 }

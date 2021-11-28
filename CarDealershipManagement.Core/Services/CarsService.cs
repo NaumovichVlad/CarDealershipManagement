@@ -1,13 +1,10 @@
 ﻿using CarDealershipManagement.Core.BusinessModels;
-using CarDealershipManagement.Core.Interfaces;
+using CarDealershipManagement.Core.Interfaces.Repositories;
+using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Core.Services
 {
@@ -21,7 +18,8 @@ namespace CarDealershipManagement.Core.Services
 
         public List<CarBusiness> GetCars()
         {
-            return _carsRepository.List().Select(c => new CarBusiness()
+            return _carsRepository.ListWithIncludes(c => c.Brand, c => c.Manufacturer)
+                .Select(c => new CarBusiness()
             {
                 Id = c.Id,
                 RegistrationNumber = c.RegistrationNumber,
@@ -37,7 +35,7 @@ namespace CarDealershipManagement.Core.Services
 
         public List<CarBusiness> GetCarsRange(int start, int end)
         {
-            return _carsRepository.Skip(start).Take(end - start)
+            return _carsRepository.GetRangeWithIncludes(start, end, c => c.Brand, c => c.Manufacturer)
                 .Select(c => new CarBusiness()
                 {
                     Id = c.Id,
@@ -52,9 +50,26 @@ namespace CarDealershipManagement.Core.Services
                 }).ToList();
         }
 
+        public CarBusiness GetCarById(int id)
+        {
+            var car = _carsRepository.GetByIdWithIncludes(id, c => c.Brand, c => c.Manufacturer);
+            return new CarBusiness()
+            {
+                Id = car.Id,
+                RegistrationNumber = car.RegistrationNumber,
+                BrandName = car.Brand.BrandName,
+                ManufacturerName = car.Manufacturer.ManufacturerName,
+                Picture = car.Picture,
+                Color = car.Color,
+                BodyTypeNumber = car.BodyTypeNumber,
+                EngineNumber = car.EngineNumber,
+                Price = Math.Round(car.Price, 2),
+            };
+        }
+
         public int Count()
         {
-            return _carsRepository.List().Count();
+            return _carsRepository.GetCount();
         }
     }
 }

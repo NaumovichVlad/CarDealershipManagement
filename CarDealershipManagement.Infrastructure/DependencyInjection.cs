@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Core.Interfaces;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Config;
 using CarDealershipManagement.Infrastructure.Repositories;
@@ -23,6 +23,8 @@ namespace CarDealershipManagement.Infrastructure
             services.AddScoped(typeof(IRepository<Customer>), typeof(CustomersRepository));
             services.AddScoped(typeof(IRepository<Employee>), typeof(EmployeesRepository));
             services.AddScoped(typeof(IRepository<Order>), typeof(OrdersRepository));
+            services.AddScoped(typeof(IRepository<CarEquipment>), typeof(CarEquipmentsRepository));
+            services.AddScoped(typeof(IRepository<CarSpecification>), typeof(CarSpecificationsRepository));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
         }
 

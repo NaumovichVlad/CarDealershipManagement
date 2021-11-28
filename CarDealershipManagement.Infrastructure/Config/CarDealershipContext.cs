@@ -1,9 +1,6 @@
 ﻿using CarDealershipManagement.Core.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Infrastructure.Config
 {

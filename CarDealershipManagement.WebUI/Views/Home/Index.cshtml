@@ -1,4 +1,4 @@
-﻿@model CarDealershipManagement.WebUI.ViewModels.CarsForCatalogViewModel
+﻿@model CarDealershipManagement.WebUI.ViewModels.CarsHomeViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -13,7 +13,7 @@
 			  <div class="card-body">
 				<h4 class="card-title">@car.BrandName</h4>
 				<p class="card-text">@car.ManufacturerName</p>
-				<a href="#!" class="btn btn-primary">Подробнее</a>
+				<a asp-action="RouteToDetailsPage" asp-route-id="@car.Id" class="btn btn-primary">Подробнее</a>
 			  </div>
 			</div>
 		}

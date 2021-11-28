@@ -8,7 +8,7 @@ namespace CarDealershipManagement.Core.Config
     public static class DbTestFiller
     {
         private static readonly int _oneCount = 1000;
-        private static readonly int _manyCount = 100;
+        private static readonly int _manyCount = 500;
 
         public static Brand[] GetTestBrands()
         {
@@ -69,9 +69,9 @@ namespace CarDealershipManagement.Core.Config
         public static Car[] GetTestCars()
         {
             var random = new Random();
-            var cars = new Car[_oneCount];
+            var cars = new Car[_manyCount];
             var images = Directory.GetFiles(@"../Images");
-            for (var i = 0; i < _oneCount; i++)
+            for (var i = 0; i < _manyCount; i++)
             {
                 var image = Image.FromFile(images[i % images.Length]);
                 byte[] imageBytes;
@@ -98,13 +98,13 @@ namespace CarDealershipManagement.Core.Config
         public static CarEquipment[] GetTestCarEquipments()
         {
             var random = new Random();
-            var carEquipments = new CarEquipment[_manyCount];
-            for (var i = 0; i < _manyCount; i++)
+            var carEquipments = new CarEquipment[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 carEquipments[i] = new CarEquipment()
                 {
-                    CarId = random.Next(1, _oneCount),
-                    EquipmentId = random.Next(1, _oneCount)
+                    CarId = i % _manyCount + 1,
+                    OptionalEquipmentId = i + 1
                 };
             }
             return carEquipments;
@@ -112,14 +112,13 @@ namespace CarDealershipManagement.Core.Config
 
         public static CarSpecification[] GetTestCarSpecs()
         {
-            var random = new Random();
-            var carSpecs = new CarSpecification[_manyCount];
-            for (var i = 0; i < _manyCount; i++)
+            var carSpecs = new CarSpecification[_oneCount];
+            for (var i = 0; i < _oneCount; i++)
             {
                 carSpecs[i] = new CarSpecification()
                 {
-                    CarId = random.Next(1, _oneCount),
-                    SpecificationId = random.Next(1, _oneCount)
+                    CarId = i % _manyCount + 1,
+                    SpecificationId = i + 1
                 };
             }
             return carSpecs;
@@ -184,7 +183,7 @@ namespace CarDealershipManagement.Core.Config
                 orders[i] = new Order()
                 {
                     CustomerId = random.Next(1, _oneCount),
-                    CarId = random.Next(1, _oneCount),
+                    CarId = random.Next(1, _manyCount),
                     EmployeeId = random.Next(1, _manyCount),
                     OrderDate = GetRandomDate(),
                     OrderCompleteMark = Convert.ToBoolean(random.Next(0, 1)),

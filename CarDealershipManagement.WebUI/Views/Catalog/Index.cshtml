@@ -1,0 +1,24 @@
+﻿@model CarDealershipManagement.WebUI.ViewModels.CatalogViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+        <th>#</th>
+        <th>Характеристика автомобиля</th>
+        <th>Её значение</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var spec in Model.Specifications)
+        {
+            <tr>
+                <td>@spec.SpecificationName</td>
+                <td>@spec.SpecificationValue</td>
+            </tr>     
+        }
+    </tbody>
+</table>
+

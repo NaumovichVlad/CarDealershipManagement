@@ -1,9 +1,11 @@
-﻿using CarDealershipManagement.Core.Interfaces;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
 {
@@ -11,34 +13,40 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         where T : EntityBase
     {
         private readonly CarDealershipContext _dbContext;
-        public Repository(CarDealershipContext dbContext)
+        private DbSet<T> _dbSet;
+        public Repository(CarDealershipContext dbContext, params Expression<Func<T, object>>[] includeProperties)
         {
             _dbContext = dbContext;
+            _dbSet = dbContext.Set<T>();
         }
         public virtual T GetById(int id)
         {
-            return _dbContext.Set<T>().Find(id);
+            return _dbSet.Find(id);
         }
-        public virtual IQueryable<T> List()
+
+        public int GetCount()
         {
-            return _dbContext.Set<T>();
+            return _dbSet.Count();
         }
-        public virtual IQueryable<T> Take(int rows)
+        public virtual IEnumerable<T> List()
         {
-            return _dbContext.Set<T>().Take(rows);
+            return _dbSet.AsEnumerable();
         }
-        public virtual IQueryable<T> Skip(int rows)
+        public virtual IEnumerable<T> Take(int rows)
         {
-            return _dbContext.Set<T>().Skip(rows);
+            return _dbSet.Take(rows).AsEnumerable();
         }
-        public virtual IQueryable<T> List(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public virtual IEnumerable<T> Skip(int rows)
         {
-            return _dbContext.Set<T>()
-                   .Where(predicate);
+            return _dbSet.Skip(rows).AsEnumerable();
+        }
+        public virtual IEnumerable<T> List(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate).AsEnumerable();
         }
         public void Insert(T entity)
         {
-            _dbContext.Set<T>().Add(entity);
+            _dbSet.Add(entity);
             _dbContext.SaveChanges();
         }
         public void Update(T entity)
@@ -48,8 +56,34 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         }
         public void Delete(T entity)
         {
-            _dbContext.Set<T>().Remove(entity);
+            _dbSet.Remove(entity);
             _dbContext.SaveChanges();
+        }
+        public T GetByIdWithIncludes(int id, params Expression<Func<T, object>>[] includeProperties)
+        {
+            return Include(includeProperties).First(t => t.Id == id);
+        }
+
+        public virtual IEnumerable<T> GetRangeWithIncludes(int startIndex, int endIndex, 
+            params Expression<Func<T, object>>[] includeProperties)
+        {
+            var query = Include(includeProperties);
+            return query.Skip(startIndex).Take(endIndex - startIndex).AsEnumerable();
+        }
+        public virtual IEnumerable<T> ListWithIncludes(params Expression<Func<T, object>>[] includeProperties)
+        {
+            return Include(includeProperties).AsEnumerable();
+        }
+        public virtual IEnumerable<T> ListWithIncludes(Func<T, bool> predicate,
+            params Expression<Func<T, object>>[] includeProperties)
+        {
+            return Include(includeProperties).Where(predicate);
+        }
+        private  IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet.AsNoTracking();
+            return includeProperties
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
     }
 }

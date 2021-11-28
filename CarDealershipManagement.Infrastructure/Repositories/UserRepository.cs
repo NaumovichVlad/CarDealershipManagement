@@ -1,12 +1,9 @@
-﻿using CarDealershipManagement.Core.Interfaces;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
 {
