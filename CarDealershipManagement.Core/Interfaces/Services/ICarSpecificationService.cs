@@ -5,7 +5,7 @@ namespace CarDealershipManagement.Core.Interfaces.Services
 {
     public interface ICarSpecificationService
     {
-        List<CarSpecificationBusiness> GetCarEquipment();
+        List<CarSpecificationBusiness> GetCarSpecifications();
         List<CarSpecificationBusiness> GetCarSpecificationsByCarId(int carId);
     }
 }

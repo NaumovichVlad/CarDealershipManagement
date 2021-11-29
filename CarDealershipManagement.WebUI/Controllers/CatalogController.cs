@@ -8,16 +8,16 @@ namespace CarDealershipManagement.WebUI.Controllers
     [Authorize]
     public class CatalogController : Controller
     {
-        private readonly ICarsService _carService;
+        private readonly ICarsBasisService _carBasisService;
         private readonly ICarSpecificationService _carSpecificationService;
         private readonly ICarEquipmentService _carEquipmentService;
 
         public int CarId { get; set; }
 
-        public CatalogController(ICarsService carService, ICarEquipmentService carEquipmentService, 
+        public CatalogController(ICarsBasisService carService, ICarEquipmentService carEquipmentService, 
             ICarSpecificationService carSpecificationService)
         {
-            _carService = carService;
+            _carBasisService = carService;
             _carEquipmentService = carEquipmentService;
             _carSpecificationService = carSpecificationService;
         }
@@ -28,7 +28,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             carId = carId == 0 ? CarId : carId;
             var equipment = _carEquipmentService.GetCarEquipmentsByCarId(carId);
             var specification = _carSpecificationService.GetCarSpecificationsByCarId(carId);
-            var car = _carService.GetCarById(carId);
+            var car = _carBasisService.GetCarById(carId);
             return View(new CatalogViewModel { Car = car, Equipments = equipment, Specifications = specification });
         }
 

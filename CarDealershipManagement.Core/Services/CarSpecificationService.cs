@@ -15,11 +15,11 @@ namespace CarDealershipManagement.Core.Services
             _repository = carSpecificationRepository;
         }
 
-        public List<CarSpecificationBusiness> GetCarEquipment()
+        public List<CarSpecificationBusiness> GetCarSpecifications()
         {
             var carSpecifications = _repository.List().Select(s => new CarSpecificationBusiness
             {
-                CarId = s.CarId,
+                CarId = s.CarBasisId,
                 SpecificationId = s.SpecificationId,
                 SpecificationName = s.Specification.SpecificationName,
                 SpecificationValue = s.Specification.SpecificationValue
@@ -29,10 +29,10 @@ namespace CarDealershipManagement.Core.Services
 
         public List<CarSpecificationBusiness> GetCarSpecificationsByCarId(int carId)
         {
-            var carSpecifications = _repository.ListWithIncludes(s => s.CarId == carId, s => s.Specification)
+            var carSpecifications = _repository.ListWithIncludes(s => s.CarBasisId == carId, s => s.Specification)
                 .Select(s => new CarSpecificationBusiness
             {
-                CarId = s.CarId,
+                CarId = s.CarBasisId,
                 SpecificationId = s.SpecificationId,
                 SpecificationName = s.Specification.SpecificationName,
                 SpecificationValue = s.Specification.SpecificationValue

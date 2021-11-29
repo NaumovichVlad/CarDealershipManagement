@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarDealershipManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(CarDealershipContext))]
-    [Migration("20211128190706_InitialCreate")]
+    [Migration("20211129080900_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,12 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                     b.Property<string>("BrandName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ManufacturerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ManufacturerId");
 
                     b.ToTable("Brands");
                 });
@@ -51,17 +56,35 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                     b.Property<string>("BodyTypeNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CarBasisId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EngineNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegistrationNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarBasisId");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("CarDealershipManagement.Core.Models.CarBasis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EngineNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ManufacturerId")
-                        .HasColumnType("int");
 
                     b.Property<byte[]>("Picture")
                         .HasColumnType("varbinary(max)");
@@ -69,16 +92,11 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("RegistrationNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("ManufacturerId");
-
-                    b.ToTable("Cars");
+                    b.ToTable("CarBasises");
                 });
 
             modelBuilder.Entity("CarDealershipManagement.Core.Models.CarEquipment", b =>
@@ -112,7 +130,7 @@ namespace CarDealershipManagement.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CarId")
+                    b.Property<int>("CarBasisId")
                         .HasColumnType("int");
 
                     b.Property<int>("SpecificationId")
@@ -120,7 +138,7 @@ namespace CarDealershipManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId");
+                    b.HasIndex("CarBasisId");
 
                     b.HasIndex("SpecificationId");
 
@@ -506,7 +524,29 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CarDealershipManagement.Core.Models.Brand", b =>
+                {
+                    b.HasOne("CarDealershipManagement.Core.Models.Manufacturer", "Manufacturer")
+                        .WithMany()
+                        .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manufacturer");
+                });
+
             modelBuilder.Entity("CarDealershipManagement.Core.Models.Car", b =>
+                {
+                    b.HasOne("CarDealershipManagement.Core.Models.CarBasis", "CarBasis")
+                        .WithMany()
+                        .HasForeignKey("CarBasisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CarBasis");
+                });
+
+            modelBuilder.Entity("CarDealershipManagement.Core.Models.CarBasis", b =>
                 {
                     b.HasOne("CarDealershipManagement.Core.Models.Brand", "Brand")
                         .WithMany()
@@ -514,15 +554,7 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarDealershipManagement.Core.Models.Manufacturer", "Manufacturer")
-                        .WithMany()
-                        .HasForeignKey("ManufacturerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Brand");
-
-                    b.Navigation("Manufacturer");
                 });
 
             modelBuilder.Entity("CarDealershipManagement.Core.Models.CarEquipment", b =>
@@ -546,9 +578,9 @@ namespace CarDealershipManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("CarDealershipManagement.Core.Models.CarSpecification", b =>
                 {
-                    b.HasOne("CarDealershipManagement.Core.Models.Car", "Car")
+                    b.HasOne("CarDealershipManagement.Core.Models.CarBasis", "CarBasis")
                         .WithMany()
-                        .HasForeignKey("CarId")
+                        .HasForeignKey("CarBasisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -558,7 +590,7 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Car");
+                    b.Navigation("CarBasis");
 
                     b.Navigation("Specification");
                 });

@@ -29,9 +29,10 @@ namespace CarDealershipManagement.WebUI.Middleware
             if (db.Cars.Any())
                 return;
 
-            db.Brands.AddRange(DbTestFiller.GetTestBrands());
-            db.SaveChanges();
+            
             db.Manufacturers.AddRange(DbTestFiller.GetTestManufacturers());
+            db.SaveChanges();
+            db.Brands.AddRange(DbTestFiller.GetTestBrands());
             db.SaveChanges();
             db.Positions.AddRange(DbTestFiller.GetTestPositions());
             db.SaveChanges();
@@ -39,13 +40,15 @@ namespace CarDealershipManagement.WebUI.Middleware
             db.SaveChanges();
             db.OptionalEquipments.AddRange(DbTestFiller.GetTestOptionalEquipments());
             db.SaveChanges();
-            db.Specifications.AddRange(DbTestFiller.GetTestSpecs());
+            db.Specifications.AddRange(DbTestFiller.GetTestSpecifications());
+            db.SaveChanges();
+            db.CarBasises.AddRange(DbTestFiller.GetTestCarsBasis());
             db.SaveChanges();
             db.Cars.AddRange(DbTestFiller.GetTestCars());
             db.SaveChanges();
             db.CarEquipments.AddRange(DbTestFiller.GetTestCarEquipments());
             db.SaveChanges();
-            db.CarSpecifications.AddRange(DbTestFiller.GetTestCarSpecs());
+            db.CarSpecifications.AddRange(DbTestFiller.GetTestCarSpecifications());
             db.SaveChanges();
             db.Customers.AddRange(DbTestFiller.GetTestCustomers());
             db.SaveChanges();

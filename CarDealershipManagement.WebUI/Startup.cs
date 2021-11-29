@@ -27,7 +27,7 @@ namespace CarDealershipManagement.WebUI
             services.AddDbContext(connectionString);
             services.AddRepositories();
             services.AddIdentity();
-            services.AddTransient<ICarsService, CarsService>();
+            services.AddTransient<ICarsBasisService, CarsBasisService>();
             services.AddTransient<ICarEquipmentService, CarEquipmentService>();
             services.AddTransient<ICarSpecificationService, CarSpecificationService>();
             services.AddControllersWithViews();

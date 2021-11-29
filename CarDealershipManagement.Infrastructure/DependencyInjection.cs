@@ -20,6 +20,7 @@ namespace CarDealershipManagement.Infrastructure
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<Car>), typeof(CarsRepository));
+            services.AddScoped(typeof(IRepository<CarBasis>), typeof(CarBasisesRepository));
             services.AddScoped(typeof(IRepository<Customer>), typeof(CustomersRepository));
             services.AddScoped(typeof(IRepository<Employee>), typeof(EmployeesRepository));
             services.AddScoped(typeof(IRepository<Order>), typeof(OrdersRepository));

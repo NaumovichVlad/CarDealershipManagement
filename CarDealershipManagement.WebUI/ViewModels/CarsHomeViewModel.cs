@@ -4,7 +4,7 @@ namespace CarDealershipManagement.WebUI.ViewModels
 {
     public class CarsHomeViewModel
     {
-        public List<CarHomeViewModel> Cars { get; set; }
+        public List<CarBasisViewModel> Cars { get; set; }
         public PageViewModel Page { get; set; }
     }
 }

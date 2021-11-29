@@ -9,8 +9,8 @@ namespace CarDealershipManagement.WebUI.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ICarsService _carsService;
-        public HomeController(ICarsService carsService)
+        private readonly ICarsBasisService _carsService;
+        public HomeController(ICarsBasisService carsService)
         {
             _carsService = carsService;
         }
@@ -20,7 +20,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             int pageSize = 6;
             var skip = (pageNumber - 1) * pageSize;
             
-            var cars = _carsService.GetCarsRange(skip, skip + pageSize).Select(c => new CarHomeViewModel()
+            var cars = _carsService.GetCarsRange(skip, skip + pageSize).Select(c => new CarBasisViewModel()
             {
                 Id = c.Id,
                 BrandName = c.BrandName,

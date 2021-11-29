@@ -8,6 +8,7 @@ namespace CarDealershipManagement.Infrastructure.Config
     {
         public DbSet<Brand> Brands => Set<Brand>();
         public DbSet<Car> Cars => Set<Car>();
+        public DbSet<CarBasis> CarBasises => Set<CarBasis>();
         public DbSet<CarEquipment> CarEquipments => Set<CarEquipment>();
         public DbSet<CarSpecification> CarSpecifications => Set<CarSpecification>();
         public DbSet<Customer> Customers => Set<Customer>();

@@ -1,24 +1,35 @@
 ﻿using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 
 namespace CarDealershipManagement.WebUI.Controllers
 {
     public class CatalogSearchController : Controller
     {
-        private readonly ICarsService _carService;
-        public CatalogSearchController(ICarsService carService)
+        private readonly ICarsBasisService _carService;
+        private const int pageSize = 8;
+        public CatalogSearchController(ICarsBasisService carService)
         {
             _carService = carService;
         }
-        public IActionResult Search(string sortOrder, string searchString)
+        public IActionResult Search(string sortOrder, string searchString, string currentFilter, int pageNumber = 1)
         {
-            ViewData["BrandSortParm"] = string.IsNullOrEmpty(sortOrder) ? "brand_desc" : "";
-            ViewData["ManufacturerSortParm"] = string.IsNullOrEmpty(sortOrder) ? "manufacturer_desc" : "";
-            ViewData["PriceSortParm"] = string.IsNullOrEmpty(sortOrder) ? "price_desc" : "";
+            ViewData["BrandSortParam"] = sortOrder == CarSortState.BrandNameAsc.ToString() ? CarSortState.BrandNameDesc.ToString() : CarSortState.BrandNameAsc.ToString();
+            ViewData["ManufacturerNameSortParam"] = sortOrder == CarSortState.ManufacturerNameAsc.ToString() ? CarSortState.ManufacturerNameDesc.ToString() : CarSortState.ManufacturerNameAsc.ToString();
+            ViewData["PriceSortParam"] = sortOrder == CarSortState.PriceAsc.ToString() ? CarSortState.PriceDesc.ToString() : CarSortState.PriceAsc.ToString();
+            ViewData["CurrentSort"] = sortOrder;
+
+            if (searchString != null)
+                pageNumber = 1;
+            else
+                searchString = currentFilter;
+
             ViewData["CurrentFilter"] = searchString;
-            var cars = _carService.GetCars().Select(c => new CarHomeViewModel()
+
+            Enum.TryParse(sortOrder, out CarSortState sortState);
+            var cars = _carService.GetCars().Select(c => new CarBasisViewModel()
             {
                 Id = c.Id,
                 BrandName = c.BrandName,
@@ -31,14 +42,20 @@ namespace CarDealershipManagement.WebUI.Controllers
                 cars = cars.Where(c => c.BrandName.Contains(searchString)
                                        || c.ManufacturerName.Contains(searchString));
             }
-            cars = sortOrder switch
+            cars = sortState switch
             {
-                "brand_desc" => cars.OrderByDescending(c => c.BrandName),
-                "price_desc" => cars.OrderByDescending(c => c.Price),
-                "manufacturer_desc" => cars.OrderByDescending(c => c.ManufacturerName),
-                _ => cars.OrderBy(c => c.BrandName),
+                CarSortState.BrandNameDesc => cars.OrderByDescending(c => c.BrandName),
+                CarSortState.BrandNameAsc => cars.OrderBy(c => c.BrandName),
+                CarSortState.ManufacturerNameDesc => cars.OrderByDescending(c => c.ManufacturerName),
+                CarSortState.ManufacturerNameAsc => cars.OrderBy(c => c.ManufacturerName),
+                CarSortState.PriceDesc => cars.OrderByDescending(c => c.Price),
+                CarSortState.PriceAsc => cars.OrderBy(c => c.Price),
+                _ => cars,
             };
-            return View(new SearchViewModel { Cars = cars.ToList() });
+            var count = cars.Count();
+            cars = cars.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var _page = new PageViewModel(count, pageNumber, pageSize);
+            return View(new SearchViewModel { Cars = cars.ToList(), Page = _page });
         }
 
         [HttpGet]
@@ -46,5 +63,16 @@ namespace CarDealershipManagement.WebUI.Controllers
         {
             return RedirectToAction("Index", "Catalog", new { CarId = id });
         }
+    }
+
+    public enum CarSortState
+    {
+        No,
+        BrandNameAsc,
+        BrandNameDesc,
+        ManufacturerNameAsc,
+        ManufacturerNameDesc,
+        PriceAsc,
+        PriceDesc
     }
 }
