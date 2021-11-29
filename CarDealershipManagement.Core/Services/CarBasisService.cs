@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Core.BusinessModels;
+﻿using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
@@ -8,18 +8,18 @@ using System.Linq;
 
 namespace CarDealershipManagement.Core.Services
 {
-    public class CarsBasisService : ICarsBasisService
+    public class CarBasisService : ICarBasisService
     {
         private readonly IRepository<CarBasis> _carsBasisRepository;
-        public CarsBasisService(IRepository<CarBasis> carsBasisRepository)
+        public CarBasisService(IRepository<CarBasis> carsBasisRepository)
         {
             _carsBasisRepository = carsBasisRepository;
         }
 
-        public List<CarBasisBusiness> GetCars()
+        public List<CarBasisDto> GetCars()
         {
             return _carsBasisRepository.ListWithIncludes(c => c.Brand.Manufacturer)
-                .Select(c => new CarBasisBusiness()
+                .Select(c => new CarBasisDto()
             {
                 Id = c.Id,
                 BrandName = c.Brand.BrandName,
@@ -30,10 +30,10 @@ namespace CarDealershipManagement.Core.Services
             }).ToList();
         }
 
-        public List<CarBasisBusiness> GetCarsRange(int start, int end)
+        public List<CarBasisDto> GetCarsRange(int start, int end)
         {
             return _carsBasisRepository.GetRangeWithIncludes(start, end, c => c.Brand.Manufacturer)
-                .Select(c => new CarBasisBusiness()
+                .Select(c => new CarBasisDto()
                 {
                     Id = c.Id,
                     BrandName = c.Brand.BrandName,
@@ -44,10 +44,10 @@ namespace CarDealershipManagement.Core.Services
                 }).ToList();
         }
 
-        public CarBasisBusiness GetCarById(int id)
+        public CarBasisDto GetCarById(int id)
         {
             var car = _carsBasisRepository.GetByIdWithIncludes(id, c => c.Brand.Manufacturer);
-            return new CarBasisBusiness()
+            return new CarBasisDto()
             {
                 Id = car.Id,
                 BrandName = car.Brand.BrandName,

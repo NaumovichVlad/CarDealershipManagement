@@ -1,11 +1,11 @@
-﻿using CarDealershipManagement.Core.BusinessModels;
+﻿using CarDealershipManagement.Core.ModelsDto;
 using System.Collections.Generic;
 
 namespace CarDealershipManagement.Core.Interfaces.Services
 {
     public interface ICarEquipmentService
     {
-        List<CarEquipmentBusiness> GetCarEquipment();
-        List<CarEquipmentBusiness> GetCarEquipmentsByCarId(int carId);
+        List<CarEquipmentDto> GetCarEquipment();
+        List<CarEquipmentDto> GetCarEquipmentsByCarId(int carId);
     }
 }

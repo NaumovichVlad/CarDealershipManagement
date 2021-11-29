@@ -1,14 +1,13 @@
-﻿using CarDealershipManagement.Core.BusinessModels;
+﻿using CarDealershipManagement.Core.ModelsDto;
 using System.Collections.Generic;
 
 namespace CarDealershipManagement.WebUI.ViewModels
 {
     public class CatalogViewModel
     {
-        public CarBasisBusiness Car { get; set; }
-        public List<CarSpecificationBusiness> Specifications { get; set; }
-        public List<CarEquipmentBusiness> Equipments { get; set; }
-        public PageViewModel Page { get; set; }
+        public CarBasisDto Car { get; set; }
+        public List<CarSpecificationDto> Specifications { get; set; }
+        public bool IsInStock { get; set; }
 
     }
 }

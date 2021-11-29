@@ -9,8 +9,8 @@ namespace CarDealershipManagement.WebUI.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ICarsBasisService _carsService;
-        public HomeController(ICarsBasisService carsService)
+        private readonly ICarBasisService _carsService;
+        public HomeController(ICarBasisService carsService)
         {
             _carsService = carsService;
         }
@@ -29,7 +29,7 @@ namespace CarDealershipManagement.WebUI.Controllers
                 Price = c.Price,
             }).ToList();
             PageViewModel pageViewModel = new(_carsService.Count(), pageNumber, pageSize);
-            var model = new CarsHomeViewModel { Page = pageViewModel, Cars = cars };
+            var model = new CarsBasisViewModel { Page = pageViewModel, Cars = cars };
             return View(model);
         }
 

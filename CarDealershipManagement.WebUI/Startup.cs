@@ -2,12 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using CarDealershipManagement.Infrastructure;
-using CarDealershipManagement.WebUI.Middleware;
-using CarDealershipManagement.Core.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using CarDealershipManagement.Core.Services;
+using CarDealershipManagement.Core.Config;
+using CarDealershipManagement.Infrastructure.Config;
+using CarDealershipManagement.WebUI.Middleware;
 
 namespace CarDealershipManagement.WebUI
 {
@@ -27,9 +26,7 @@ namespace CarDealershipManagement.WebUI
             services.AddDbContext(connectionString);
             services.AddRepositories();
             services.AddIdentity();
-            services.AddTransient<ICarsBasisService, CarsBasisService>();
-            services.AddTransient<ICarEquipmentService, CarEquipmentService>();
-            services.AddTransient<ICarSpecificationService, CarSpecificationService>();
+            services.AddServices();
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

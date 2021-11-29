@@ -1,4 +1,5 @@
-﻿using CarDealershipManagement.Core.Interfaces.Repositories;
+﻿using CarDealershipManagement.Core.Interfaces;
+using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Infrastructure.Config;
 using CarDealershipManagement.Infrastructure.Repositories;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CarDealershipManagement.Infrastructure
+namespace CarDealershipManagement.Infrastructure.Config
 {
 
     public static class DependencyInjection
@@ -26,7 +27,7 @@ namespace CarDealershipManagement.Infrastructure
             services.AddScoped(typeof(IRepository<Order>), typeof(OrdersRepository));
             services.AddScoped(typeof(IRepository<CarEquipment>), typeof(CarEquipmentsRepository));
             services.AddScoped(typeof(IRepository<CarSpecification>), typeof(CarSpecificationsRepository));
-            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(IUserRoleRepository), typeof(UserRoleRepository));
         }
 
         public static IdentityBuilder AddIdentity(this IServiceCollection services) =>

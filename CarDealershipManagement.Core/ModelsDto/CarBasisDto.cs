@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace CarDealershipManagement.Core.BusinessModels
+namespace CarDealershipManagement.Core.ModelsDto
 {
-    public class CarBasisBusiness
+    public class CarBasisDto
     {
         public int Id { get; set; }
         public string BrandName { get; set; }

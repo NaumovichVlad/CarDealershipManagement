@@ -8,9 +8,9 @@ namespace CarDealershipManagement.WebUI.Controllers
 {
     public class CatalogSearchController : Controller
     {
-        private readonly ICarsBasisService _carService;
+        private readonly ICarBasisService _carService;
         private const int pageSize = 8;
-        public CatalogSearchController(ICarsBasisService carService)
+        public CatalogSearchController(ICarBasisService carService)
         {
             _carService = carService;
         }
@@ -28,7 +28,7 @@ namespace CarDealershipManagement.WebUI.Controllers
 
             ViewData["CurrentFilter"] = searchString;
 
-            Enum.TryParse(sortOrder, out CarSortState sortState);
+            _ = Enum.TryParse(sortOrder, out CarSortState sortState);
             var cars = _carService.GetCars().Select(c => new CarBasisViewModel()
             {
                 Id = c.Id,

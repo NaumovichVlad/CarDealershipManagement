@@ -191,13 +191,13 @@ namespace CarDealershipManagement.Core.Config
         public static Order[] GetTestOrders()
         {
             var random = new Random();
-            var orders = new Order[_higtCount];
-            for (var i = 0; i < _higtCount; i++)
+            var orders = new Order[_middleCount];
+            for (var i = 0; i < _middleCount; i++)
             {
                 orders[i] = new Order()
                 {
                     CustomerId = random.Next(1, _middleCount),
-                    CarId = random.Next(1, _higtCount),
+                    CarId = i + _lowCount + 1,
                     EmployeeId = random.Next(1, _middleCount),
                     OrderDate = GetRandomDate(),
                     OrderCompleteMark = Convert.ToBoolean(random.Next(0, 1)),

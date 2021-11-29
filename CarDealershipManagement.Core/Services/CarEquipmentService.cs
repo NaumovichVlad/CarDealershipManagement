@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Core.BusinessModels;
+﻿using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
@@ -15,9 +15,9 @@ namespace CarDealershipManagement.Core.Services
             _repository = carEquipmentRepository;
         }
 
-        public List<CarEquipmentBusiness> GetCarEquipment()
+        public List<CarEquipmentDto> GetCarEquipment()
         {
-            var carEquipments = _repository.List().Select(e => new CarEquipmentBusiness
+            var carEquipments = _repository.List().Select(e => new CarEquipmentDto
             {
                 CarId = e.CarId,
                 EquipmentId = e.OptionalEquipmentId,
@@ -27,10 +27,10 @@ namespace CarDealershipManagement.Core.Services
             return carEquipments;
         }
 
-        public List<CarEquipmentBusiness> GetCarEquipmentsByCarId(int carId)
+        public List<CarEquipmentDto> GetCarEquipmentsByCarId(int carId)
         {
             return _repository.ListWithIncludes(c => c.CarId == carId, c => c.OptionalEquipment)
-            .Select(e => new CarEquipmentBusiness
+            .Select(e => new CarEquipmentDto
             {
                 CarId = e.CarId,
                 EquipmentId = e.OptionalEquipmentId,

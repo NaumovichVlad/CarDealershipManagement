@@ -14,7 +14,14 @@
             <h6>Цвет: @Model.Car.Color</h6>
             <h6>Стоимость: @Model.Car.Price USD</h6>
             <div class="pt-2">
-                <a asp-action="RouteToDetailsPage" asp-route-id="@Model.Car.Id" class="btn btn-primary">В корзину</a>
+                @if (Model.IsInStock)
+                {
+                    <a asp-action="Buy" asp-route-id="@Model.Car.Id" class="btn btn-primary">В корзину</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary disabled">Нет в наличии</a>
+                }
                 <a asp-action="RouteToHome" class="btn btn-secondary ">Назад</a>
             </div>
         </div>
@@ -24,7 +31,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Характеристика автомобиля</th>
-                    <th>Её значение</th>
+                    <th>Значение</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,25 +40,6 @@
                 <tr>
                     <td>@spec.SpecificationName</td>
                     <td>@spec.SpecificationValue</td>
-                </tr>     
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="p-2">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Установленное оборудование</th>
-                    <th>Цена</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var equipment in Model.Equipments)
-                {
-                <tr>
-                    <td>@equipment.EquipmentName</td>
-                    <td>@equipment.EquipmentPrice</td>
                 </tr>     
                 }
             </tbody>

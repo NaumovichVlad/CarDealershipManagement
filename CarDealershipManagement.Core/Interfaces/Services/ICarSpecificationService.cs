@@ -1,11 +1,11 @@
-﻿using CarDealershipManagement.Core.BusinessModels;
+﻿using CarDealershipManagement.Core.ModelsDto;
 using System.Collections.Generic;
 
 namespace CarDealershipManagement.Core.Interfaces.Services
 {
     public interface ICarSpecificationService
     {
-        List<CarSpecificationBusiness> GetCarSpecifications();
-        List<CarSpecificationBusiness> GetCarSpecificationsByCarId(int carId);
+        List<CarSpecificationDto> GetCarSpecifications();
+        List<CarSpecificationDto> GetCarSpecificationsByCarId(int carId);
     }
 }

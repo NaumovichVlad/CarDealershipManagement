@@ -1,4 +1,6 @@
-﻿using CarDealershipManagement.Core.Models;
+﻿using CarDealershipManagement.Core.Interfaces.Services;
+using CarDealershipManagement.Core.Models;
+using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,14 +10,13 @@ namespace CarDealershipManagement.WebUI.Controllers
 {
     public class AccountController : Controller
     {
-        
-        private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IIdentityService _identityService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(SignInManager<User> signInManager, IIdentityService identityService)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
+            _identityService = identityService;
         }
         [HttpGet]
         public IActionResult Register()
@@ -27,12 +28,30 @@ namespace CarDealershipManagement.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new() { UserName = model.UserName};
-                var result = await _userManager.CreateAsync(user, model.Password);
+                User user = new() { UserName = model.UserName };
+                var result = _identityService.AddNewUser(user, model.Password, new CustomerDto()
+                { 
+                    Surname = model.Surname,
+                    Name = model.Name,
+                    MiddleName = model.MiddleName,
+                    Address = model.Address,
+                    PassportData = model.PassportData,
+                }).Result;
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    IdentityResult tmpResult = _identityService.AddNewUserRole(user, "customer").Result;
+                    if (tmpResult.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        foreach (var error in tmpResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
                 }
                 else
                 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarDealershipManagement.Core.BusinessModels
+namespace CarDealershipManagement.Core.ModelsDto
 {
-    public class CarEquipmentBusiness
+    public class CarEquipmentDto
     { 
         public int CarId { get; set; }
         public int EquipmentId { get; set; }

@@ -1,7 +1,5 @@
 ﻿using CarDealershipManagement.Core.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Core.Config
@@ -12,6 +10,8 @@ namespace CarDealershipManagement.Core.Config
         {
             string adminUserName = "admin";
             string password = "Admin_01";
+            string customerUserName = "testCustomerThree";
+            string customerPassword = "testCustomer_3";
             if (await roleManager.FindByNameAsync("admin") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
@@ -31,6 +31,15 @@ namespace CarDealershipManagement.Core.Config
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
+                }            
+            }
+            if (await userManager.FindByNameAsync(customerUserName) == null)
+            {
+                User customer = new() { UserName = customerUserName };
+                IdentityResult result = await userManager.CreateAsync(customer, customerPassword);
+                if(result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(customer, "customer");
                 }
             }
         }

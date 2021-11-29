@@ -1,4 +1,4 @@
-﻿using CarDealershipManagement.Core.BusinessModels;
+﻿using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
@@ -15,9 +15,9 @@ namespace CarDealershipManagement.Core.Services
             _repository = carSpecificationRepository;
         }
 
-        public List<CarSpecificationBusiness> GetCarSpecifications()
+        public List<CarSpecificationDto> GetCarSpecifications()
         {
-            var carSpecifications = _repository.List().Select(s => new CarSpecificationBusiness
+            var carSpecifications = _repository.List().Select(s => new CarSpecificationDto
             {
                 CarId = s.CarBasisId,
                 SpecificationId = s.SpecificationId,
@@ -27,10 +27,10 @@ namespace CarDealershipManagement.Core.Services
             return carSpecifications;
         }
 
-        public List<CarSpecificationBusiness> GetCarSpecificationsByCarId(int carId)
+        public List<CarSpecificationDto> GetCarSpecificationsByCarId(int carId)
         {
             var carSpecifications = _repository.ListWithIncludes(s => s.CarBasisId == carId, s => s.Specification)
-                .Select(s => new CarSpecificationBusiness
+                .Select(s => new CarSpecificationDto
             {
                 CarId = s.CarBasisId,
                 SpecificationId = s.SpecificationId,
