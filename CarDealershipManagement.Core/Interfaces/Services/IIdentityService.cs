@@ -9,5 +9,6 @@ namespace CarDealershipManagement.Core.Interfaces.Services
     {
         Task<IdentityResult> AddNewUserRole(User user, string role);
         Task<IdentityResult> AddNewUser(User user, string password, CustomerDto customer);
+        User GetUserByUserName(string userName);
     }
 }

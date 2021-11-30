@@ -29,6 +29,8 @@ namespace CarDealershipManagement.WebUI
             services.AddServices();
             services.AddControllersWithViews();
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {

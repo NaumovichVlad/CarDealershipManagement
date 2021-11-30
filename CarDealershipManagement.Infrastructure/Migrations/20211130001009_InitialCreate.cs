@@ -388,8 +388,8 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderCompleteMark = table.Column<bool>(type: "bit", nullable: false),
-                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PrePayment = table.Column<double>(type: "float", nullable: false)
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

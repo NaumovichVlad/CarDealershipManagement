@@ -1,9 +1,39 @@
 ﻿@model CarDealershipManagement.WebUI.ViewModels.PurchaseViewModel
-<h1>Оформление заказа</h1>
-<h6>Модель: @Model.Car.BrandName</h6>
-<h6>Производитель: @Model.Car.ManufacturerName</h6>
-<h6>Цвет: @Model.Car.Color</h6>
-<h6>Регистрационный номер: @Model.Car.RegistrationNumber</h6>
-<h6>Номер кузова: @Model.Car.BodyTypeNumber</h6>
-<h6>Номер двигателя: @Model.Car.EngineNumber</h6>
-<h6>Цена: @Model.Car.Price</h6>
+<div class="p-3">
+    <h1>Оформление заказа</h1>
+</div>
+<div class="d-flex flex-row">
+    <div class="p-2">
+        <ul class="list-group">
+            <li class="list-group-item">Модель: @Model.Car.BrandName</li>
+            <li class="list-group-item">Производитель: @Model.Car.ManufacturerName</li>
+            <li class="list-group-item">Цвет: @Model.Car.Color</li>
+            <li class="list-group-item">Регистрационный номер: @Model.Car.RegistrationNumber</li>
+            <li class="list-group-item">Номер кузова: @Model.Car.BodyTypeNumber</li>
+            <li class="list-group-item">Номер двигателя: @Model.Car.EngineNumber</li>
+            <li class="list-group-item">Цена: @Model.Car.Price</li>
+        </ul>
+    </div>
+    <div class="p-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Дополнительное оборудование</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var eq in Model.CarEquipments)
+                {
+                <tr>
+                    <td>@eq.EquipmentName</td>
+                    <td>@eq.EquipmentPrice</td>
+                </tr>     
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="m-2">
+    <a  class="btn btn-primary text-white" >Готово</a>
+</div>  

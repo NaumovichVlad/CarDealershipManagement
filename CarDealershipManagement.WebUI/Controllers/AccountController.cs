@@ -1,7 +1,9 @@
 ﻿using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Core.ModelsDto;
+using CarDealershipManagement.WebUI.Extensions;
 using CarDealershipManagement.WebUI.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -29,14 +31,15 @@ namespace CarDealershipManagement.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 User user = new() { UserName = model.UserName };
-                var result = _identityService.AddNewUser(user, model.Password, new CustomerDto()
-                { 
+                var customer = new CustomerDto()
+                {
                     Surname = model.Surname,
                     Name = model.Name,
                     MiddleName = model.MiddleName,
                     Address = model.Address,
                     PassportData = model.PassportData,
-                }).Result;
+                };
+                var result = _identityService.AddNewUser(user, model.Password, customer).Result;
                 if (result.Succeeded)
                 {
                     IdentityResult tmpResult = _identityService.AddNewUserRole(user, "customer").Result;

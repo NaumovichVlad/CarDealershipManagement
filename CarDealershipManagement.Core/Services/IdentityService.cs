@@ -37,5 +37,10 @@ namespace CarDealershipManagement.Core.Services
             });
             return results;
         }
+
+        public User GetUserByUserName(string userName)
+        {
+            return _userRoleRepository.UserList().Find(u => u.UserName == userName);
+        }
     }
 }

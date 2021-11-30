@@ -12,7 +12,7 @@ namespace CarDealershipManagement.Core.Models
         public Employee Employee {  get; set; }
         public DateTime OrderDate {  get; set; }
         public bool OrderCompleteMark {  get; set; }
+        public bool IsApproved { get; set; }
         public DateTime SaleDate {  get; set; }
-        public double PrePayment {  get; set; }
     }
 }

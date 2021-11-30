@@ -200,9 +200,9 @@ namespace CarDealershipManagement.Core.Config
                     CarId = i + _lowCount + 1,
                     EmployeeId = random.Next(1, _middleCount),
                     OrderDate = GetRandomDate(),
-                    OrderCompleteMark = Convert.ToBoolean(random.Next(0, 1)),
+                    OrderCompleteMark = Convert.ToBoolean(random.Next(0, 2)),
+                    IsApproved = Convert.ToBoolean(random.Next(0, 2)),
                     SaleDate = GetRandomDate(),
-                    PrePayment = random.NextDouble()
                 };
             }
             return orders;

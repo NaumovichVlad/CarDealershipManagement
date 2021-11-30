@@ -266,14 +266,14 @@ namespace CarDealershipManagement.Infrastructure.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("OrderCompleteMark")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<double>("PrePayment")
-                        .HasColumnType("float");
 
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime2");

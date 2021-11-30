@@ -7,6 +7,5 @@ namespace CarDealershipManagement.WebUI.ViewModels
     {
         public CarDto Car { get; set; }
         public List<CarEquipmentDto> CarEquipments { get; set; }
-        public List<CarEquipmentDto> NewCarEquipments { get; set; }
     }
 }
