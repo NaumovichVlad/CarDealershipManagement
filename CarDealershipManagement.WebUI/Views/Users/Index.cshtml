@@ -1,0 +1,40 @@
+﻿@model List<CarDealershipManagement.WebUI.ViewModels.UserViewModel>
+
+    <div class="p-3">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Логин
+                    </th>
+                    <th>
+                        Роли
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>
+                            @user.UserName
+                        </td>
+                        <td>
+                            @foreach (var role in user.Roles)
+                            {
+                                <span class="badge badge-dark">@role</span>
+                            }
+                        </td>
+                        <td>
+                             <div>
+                                 <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="Index">Изменить роли</a>
+                                 <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="Index">Удалить</a>
+                             </div>
+                        </td>
+
+                    </tr>  
+                }
+            </tbody>
+        </table>
+    </div>

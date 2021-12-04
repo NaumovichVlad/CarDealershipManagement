@@ -12,5 +12,10 @@ namespace CarDealershipManagement.Core.Interfaces.Repositories
         Task<IdentityResult> CreateRole(string roleName);
         Task<IdentityResult> DeleteRole(string id);
         List<User> UserList();
+        List<IdentityRole> RoleList();
+        Task<IList<string>> UserRoleList(User user);
+        Task<User> GetUserByIdAsync(string id);
+        Task<IdentityResult> DeleteUserAsync(User user);
+        Task<IdentityResult> UpdateUserAsync(User user);
     }
 }

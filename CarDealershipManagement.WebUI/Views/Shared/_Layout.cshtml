@@ -12,6 +12,9 @@
         <nav class="navbar navbar-dark bg-dark text-white">
             @if (User.IsInRole("admin"))
             {
+                <div class="d-flex flex-row">
+                    <div><a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Users" asp-action="Index">Управление пользователями</a></div>
+                </div>
             }
             else
             {

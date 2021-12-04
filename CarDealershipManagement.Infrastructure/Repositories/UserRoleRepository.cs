@@ -29,7 +29,8 @@ namespace CarDealershipManagement.Infrastructure.Repositories
             return result;
         }
         public List<User> UserList() => _userManager.Users.ToList();
-
+        public List<IdentityRole> RoleList() => _roleManager.Roles.ToList();
+        public Task<IList<string>> UserRoleList(User user) => _userManager.GetRolesAsync(user);
         public Task<IdentityResult> AddUserRoleAsync(User user, string role)
         {
             return _userManager.AddToRoleAsync(user, role);
@@ -38,6 +39,21 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         public Task<IdentityResult> AddUserAsync(User user, string pasword)
         {
             return _userManager.CreateAsync(user, pasword);
+        }
+
+        public Task<User> GetUserByIdAsync(string id)
+        {
+            return _userManager.FindByIdAsync(id);
+        }
+
+        public Task<IdentityResult> DeleteUserAsync(User user)
+        {
+            return _userManager.DeleteAsync(user);
+        }
+
+        public Task<IdentityResult> UpdateUserAsync(User user)
+        {
+            return _userManager.UpdateAsync(user);
         }
     }
 }
