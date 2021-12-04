@@ -28,6 +28,8 @@ namespace CarDealershipManagement.Infrastructure.Config
             services.AddScoped(typeof(IRepository<CarEquipment>), typeof(CarEquipmentsRepository));
             services.AddScoped(typeof(IRepository<CarSpecification>), typeof(CarSpecificationsRepository));
             services.AddScoped(typeof(IUserRoleRepository), typeof(UserRoleRepository));
+            services.AddScoped(typeof(IRepository<Brand>), typeof(BrandsRepository));
+            services.AddScoped(typeof(IRepository<Manufacturer>), typeof(ManufacturersRepository));
         }
 
         public static IdentityBuilder AddIdentity(this IServiceCollection services) =>

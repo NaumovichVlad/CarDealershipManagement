@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using CarDealershipManagement.Core.Config;
 using CarDealershipManagement.Infrastructure.Config;
 using CarDealershipManagement.WebUI.Middleware;
+using System;
 
 namespace CarDealershipManagement.WebUI
 {
@@ -31,6 +32,7 @@ namespace CarDealershipManagement.WebUI
             services.AddMvc();
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {

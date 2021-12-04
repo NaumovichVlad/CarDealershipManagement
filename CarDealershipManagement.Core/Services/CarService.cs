@@ -12,10 +12,15 @@ namespace CarDealershipManagement.Core.Services
     {
         private readonly IRepository<Car> _carsRepository;
         private readonly IRepository<Order> _orderRepository;
-        public CarService(IRepository<Car> carsRepository, IRepository<Order> orderRepository)
+        private readonly IRepository<Brand> _brandRepository;
+        private readonly IRepository<CarBasis> _carBasisRepository;
+        public CarService(IRepository<Car> carsRepository, IRepository<Order> orderRepository, 
+            IRepository<Brand> brandRepository, IRepository<CarBasis> carBasisRepository)
         {
             _carsRepository = carsRepository;
             _orderRepository = orderRepository;
+            _brandRepository = brandRepository;
+            _carBasisRepository = carBasisRepository;
         }
 
         public List<CarDto> GetCars()
@@ -64,31 +69,49 @@ namespace CarDealershipManagement.Core.Services
         public CarDto GetFreeCarByCarBasisId(int carBasisId)
         {
             var orders = _orderRepository.ListWithIncludes(o => o.Car.CarBasisId == carBasisId, o => o.Car).Select(o => o.Id).ToList();
-            IEnumerable<Car> cars;
+            List<Car> cars;
             if(orders.Any())
-                cars = _carsRepository.ListWithIncludes(c => c.CarBasis.Id == carBasisId && !orders.Contains(c.Id),
-                    c => c.CarBasis, c => c.CarBasis.Brand, c => c.CarBasis.Brand.Manufacturer);
+                cars = _carsRepository.List(c => c.CarBasis.Id == carBasisId && !orders.Contains(c.Id)).ToList();
             else
-                cars = _carsRepository.ListWithIncludes(c => c.CarBasis.Id == carBasisId,
-                    c => c.CarBasis, c => c.CarBasis.Brand, c => c.CarBasis.Brand.Manufacturer);
+                cars = _carsRepository.List(c => c.CarBasis.Id == carBasisId).ToList();
             if (cars.Any())
             {
                 var car = cars.First();
+                var carBasis = _carBasisRepository.GetById(carBasisId);
+                var brand = _brandRepository.GetByIdWithIncludes(carBasis.Id, b => b.Manufacturer);
                 return new CarDto()
                 {
                     Id = car.Id,
                     RegistrationNumber = car.RegistrationNumber,
                     BodyTypeNumber = car.BodyTypeNumber,
                     EngineNumber = car.EngineNumber,
-                    BrandName = car.CarBasis.Brand.BrandName,
-                    ManufacturerName = car.CarBasis.Brand.Manufacturer.ManufacturerName,
-                    Picture = car.CarBasis.Picture,
-                    Color = car.CarBasis.Color,
-                    Price = Math.Round(car.CarBasis.Price, 2)
+                    BrandName = brand.BrandName,
+                    ManufacturerName = brand.Manufacturer.ManufacturerName,
+                    Picture = carBasis.Picture,
+                    Color = carBasis.Color,
+                    Price = Math.Round(carBasis.Price, 2)
                 };
             }
             else return null;
                 
+        }
+
+        public CarDto GetCarById(int id)
+        {
+            var car = _carsRepository.GetByIdWithIncludes(id, c => c.CarBasis);
+            var brand = _brandRepository.GetByIdWithIncludes(car.CarBasis.BrandId, c => c.Manufacturer);
+            return new CarDto()
+            {
+                Id = car.Id,
+                RegistrationNumber = car.RegistrationNumber,
+                BodyTypeNumber = car.BodyTypeNumber,
+                EngineNumber = car.EngineNumber,
+                BrandName = brand.BrandName,
+                ManufacturerName = brand.Manufacturer.ManufacturerName,
+                Picture = car.CarBasis.Picture,
+                Color = car.CarBasis.Color,
+                Price = Math.Round(car.CarBasis.Price, 2)
+            };
         }
     }
 }

@@ -16,7 +16,7 @@ namespace CarDealershipManagement.Core.Services
 
         public CustomerDto GetCustomerByUserName(string userName)
         {
-            var customer = _customerRepository.ListWithIncludes(c => c.User.UserName == userName, c => c.User).First();
+            var customer = _customerRepository.List(c => (c.User == null ? string.Empty : c.User.UserName) == userName).First();
             return new CustomerDto
             {
                 Id = customer.Id,
@@ -26,6 +26,20 @@ namespace CarDealershipManagement.Core.Services
                 Address = customer.Address,
                 PassportData = customer.PassportData
             };
+        }
+
+        public void CreateCustomer(CustomerDto customer, User user)
+        {
+            _customerRepository.Insert(new Customer
+            {
+                Surname = customer.Surname,
+                Name = customer.Name,
+                MiddleName = customer.MiddleName,
+                Address = customer.Address,
+                PassportData = customer.PassportData,
+                UserId = user.Id,
+                User = user,
+            });
         }
     }
 }

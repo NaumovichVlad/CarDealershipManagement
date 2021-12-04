@@ -9,5 +9,6 @@ namespace CarDealershipManagement.Core.Interfaces.Services
         List<CarDto> GetCarsByCarBasisId(int carBasisId);
         CarDto GetFreeCarByCarBasisId(int carBasisId);
         bool CheckIsFree(int carBasisId);
+        CarDto GetCarById(int id);
     }
 }

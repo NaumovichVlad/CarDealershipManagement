@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-
-namespace CarDealershipManagement.WebUI.ViewModels
+﻿namespace CarDealershipManagement.WebUI.ViewModels
 {
     public class CarBasisViewModel
     {
@@ -9,6 +6,7 @@ namespace CarDealershipManagement.WebUI.ViewModels
         public string BrandName { get; set; }
         public string ManufacturerName { get; set; }
         public byte[] Picture { get; set; }
+        public string Color { get; set; }
         public double Price { get; set; }
     }
 }

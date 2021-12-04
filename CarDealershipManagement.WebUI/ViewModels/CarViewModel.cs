@@ -8,6 +8,7 @@
         public string RegistrationNumber { get; set; }
         public string BodyTypeNumber { get; set; }
         public string EngineNumber { get; set; }
+        public string Color { get; set; }
         public byte[] Picture { get; set; }
         public double Price { get; set; }
     }

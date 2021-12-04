@@ -1,1 +1,55 @@
-﻿
+﻿@model CarDealershipManagement.WebUI.ViewModels.ShoppingCartViewModel
+<div class="d-flex flex-row">
+    <div class="p-3">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Дата заказа
+                    </th>
+                    <th>
+                        Автомобиль
+                    </th>
+                    <th>
+                        Подтверждение
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    var car = @Model.Cars.Find(c => c.Id == order.CarId);
+                    <tr>
+                        <td>
+                            @order.OrderDate
+                        </td>
+                        <td>
+                            @car.BrandName
+                        </td>
+                            @if(order.IsApproved)
+                            {
+                                <td>Подтверждено</td>
+                            }
+                            else
+                            {
+                                <td>Не подтверждено</td>
+                            }
+                        <td>
+                            @car.Price USD
+                        </td>
+                    </tr>  
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="p-3">
+        <ul class="list-group">
+            <li class="list-group-item">Фамилия @Model.Customer.Surname</li>
+            <li class="list-group-item">Имя: @Model.Customer.Name</li>
+            <li class="list-group-item">Отчество: @Model.Customer.MiddleName</li>
+        </ul>
+    </div>
+</div>

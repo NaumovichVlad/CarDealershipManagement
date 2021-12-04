@@ -22,20 +22,9 @@ namespace CarDealershipManagement.Core.Services
             return _userRoleRepository.AddUserRoleAsync(user, role);
         }
 
-        public Task<IdentityResult> AddNewUser(User user, string password, CustomerDto customer)
+        public Task<IdentityResult> AddNewUser(User user, string password)
         {
-            var results = _userRoleRepository.AddUserAsync(user, password);
-            _customerRepository.Insert(new Customer
-            {
-                Surname = customer.Surname,
-                Name = customer.Name,
-                MiddleName = customer.MiddleName,
-                Address = customer.Address,
-                PassportData = customer.PassportData,
-                UserId = user.Id,
-                User = user,
-            });
-            return results;
+             return _userRoleRepository.AddUserAsync(user, password);
         }
 
         public User GetUserByUserName(string userName)

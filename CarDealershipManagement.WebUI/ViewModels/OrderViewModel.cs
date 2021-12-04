@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CarDealershipManagement.Core.ModelsDto
+namespace CarDealershipManagement.WebUI.ViewModels
 {
-    public class OrderDto
+    public class OrderViewModel
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int CarId { get; set; }
-        public int? EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         public DateTime OrderDate { get; set; }
         public bool OrderCompleteMark { get; set; }
         public bool IsApproved { get; set; }
-        public DateTime? SaleDate { get; set; }
+        public DateTime SaleDate { get; set; }
     }
 }

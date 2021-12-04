@@ -24,7 +24,9 @@ namespace CarDealershipManagement.Core.Services
                 OrderDate = DateTime.Now.Date,
                 IsApproved = false,
                 OrderCompleteMark = false,
-                CarId = car.Id
+                CarId = car.Id,
+                EmployeeId = null,
+                SaleDate = null
             });
         }
 
