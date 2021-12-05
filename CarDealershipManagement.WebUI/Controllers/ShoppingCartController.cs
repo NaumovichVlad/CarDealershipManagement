@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.WebUI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CarDealershipManagement.WebUI.Controllers
 {
+    [Authorize(Roles = "customer")]
     public class ShoppingCartController : Controller
     {
         private readonly IOrderService _orderService;

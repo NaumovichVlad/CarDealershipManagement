@@ -5,6 +5,7 @@ using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CarDealershipManagement.WebUI.Controllers
@@ -94,7 +95,16 @@ namespace CarDealershipManagement.WebUI.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        var user = _identityService.GetUserByUserName(model.UserName);
+                        var roles = await _identityService.GetUserRoles(user);
+                        var role = roles.First();
+
+                        if (role == "admin")
+                            return RedirectToAction("Index", "Users");
+                        else if (role == "employee")
+                            return RedirectToAction("Index", "Orders");
+                        else
+                            return RedirectToAction("Index", "Home");
                     }
                 }
                 else

@@ -1,0 +1,81 @@
+﻿@model CarDealershipManagement.WebUI.ViewModels.OrdersViewModel
+<div class="p-3">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Дата заказа
+                </th>
+                <th>
+                    Регистрационный номер машины
+                </th>
+                <th>
+                    Фамилия заказчика
+                </th>
+                <th>
+                    Имя заказчика
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <td>
+                       @order.OrderDate
+                    </td>
+                    <td>
+                        @order.CarRegistrationNumber
+                    </td>
+                    <td>
+                        @order.CustomerSurname
+                    </td>
+                    <td>
+                        @order.CustomerName
+                    </td>
+                    <td>
+                        <a asp-action="Accept" asp-route-id="@order.Id" class="btn btn-primary">Принять заказ</a>
+                    </td>
+                </tr>  
+            }
+        </tbody>
+    </table>
+</div>
+
+@{
+	var prevDisabled = !Model.Page.HasPreviousPage ? "disabled" : "";
+	var nextDisabled = !Model.Page.HasNextPage ? "disabled" : "";
+}
+
+<ul class="pagination pagination-sm">
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="1"
+		class="btn btn-default page-link @prevDisabled">
+		Первая
+		</a>
+	</li>
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
+		class="btn btn-default page-link @prevDisabled">
+		<
+		</a>
+	</li>
+	<li class="page-item disabled"><a class="page-link">Cтраница @Model.Page.PageNumber</a></li>
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
+		class="btn btn-default page-link @nextDisabled">
+		>
+		</a>
+	</li>
+	<li class="page-item">
+		<a asp-action="Index"
+		asp-route-pageNumber="@(Model.Page.TotalPages)"
+		class="btn btn-default page-link @nextDisabled">
+		Последняя
+		</a>
+	</li>
+</ul>

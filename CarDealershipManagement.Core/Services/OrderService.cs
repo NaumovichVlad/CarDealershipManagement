@@ -43,7 +43,50 @@ namespace CarDealershipManagement.Core.Services
                 SaleDate = o.SaleDate,
                 OrderDate = o.OrderDate,
             }).ToList();
+        }
 
+        public List<OrderDto> GetOrdersByEmployeeId(int employeeId)
+        {
+            return _orderRepository.ListWithIncludes(o => o.EmployeeId == employeeId, o => o.Car, o => o.Customer).Select(o => new OrderDto
+            {
+                Id = o.Id,
+                CustomerId = o.CustomerId,
+                CarRegistrationNumber = o.Car.RegistrationNumber,
+                CustomerName = o.Customer.Name,
+                CustomerSurname = o.Customer.Surname,
+                EmployeeId = o.EmployeeId,
+                CarId = o.CarId,
+                IsApproved = o.IsApproved,
+                OrderCompleteMark = o.OrderCompleteMark,
+                SaleDate = o.SaleDate,
+                OrderDate = o.OrderDate,
+            }).ToList();
+        }
+
+        public List<OrderDto> GetNotApprovedOrders()
+        {
+            return _orderRepository.ListWithIncludes(o => !o.IsApproved, o => o.Car, o => o.Customer).Select(o => new OrderDto
+            {
+                Id = o.Id,
+                CustomerId = o.CustomerId,
+                EmployeeId = o.EmployeeId,
+                CarId = o.CarId,
+                CarRegistrationNumber = o.Car.RegistrationNumber,
+                CustomerName = o.Customer.Name,
+                CustomerSurname = o.Customer.Surname,
+                IsApproved = o.IsApproved,
+                OrderCompleteMark = o.OrderCompleteMark,
+                SaleDate = o.SaleDate,
+                OrderDate = o.OrderDate,
+            }).ToList();
+        }
+
+        public void ApproveOrder(int orderId, int employeeId)
+        {
+            var order = _orderRepository.GetById(orderId);
+            order.EmployeeId = employeeId;
+            order.IsApproved = true;
+            _orderRepository.Update(order);
         }
     }
 

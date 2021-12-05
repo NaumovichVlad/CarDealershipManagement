@@ -2,11 +2,13 @@
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.WebUI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace CarDealershipManagement.WebUI.Controllers
 {
+    [Authorize(Roles = "customer")]
     public class PurchaseController : Controller
     {
         private readonly ICarService _carService;

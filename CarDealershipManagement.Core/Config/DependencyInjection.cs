@@ -16,6 +16,7 @@ namespace CarDealershipManagement.Core.Config
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
         }
     }
 }

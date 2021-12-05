@@ -1,0 +1,50 @@
+﻿@model CarDealershipManagement.WebUI.ViewModels.OrdersForEmployeeViewModel
+<div class="d-flex flex-row">
+    <div class="p-3">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Дата заказа
+                    </th>
+                    <th>
+                        Регистрационный  номер
+                    </th>
+                    <th>
+                        Фамилия заказчика
+                    </th>
+                    <th>
+                        Имя заказчика
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td>
+                            @order.OrderDate
+                        </td>
+                        <td>
+                            @order.CarRegistrationNumber
+                        </td>
+                        <td>
+                            @order.CustomerSurname
+                        </td>
+                        <td>
+                            @order.CustomerName
+                        </td>
+                    </tr>  
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="p-3">
+        <ul class="list-group">
+            <li class="list-group-item">Фамилия @Model.Employee.Surname</li>
+            <li class="list-group-item">Имя: @Model.Employee.Name</li>
+            <li class="list-group-item">Отчество: @Model.Employee.MiddleName</li>
+            <li class="list-group-item">Должность: @Model.Employee.PositionName</li>
+        </ul>
+    </div>
+</div>

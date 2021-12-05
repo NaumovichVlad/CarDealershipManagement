@@ -1,7 +1,7 @@
 ﻿using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.WebUI.ViewModels;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CarDealershipManagement.WebUI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private readonly IIdentityService _identityService;

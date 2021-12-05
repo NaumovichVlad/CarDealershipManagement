@@ -56,10 +56,12 @@ namespace CarDealershipManagement.WebUI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseDbInitializer();
+            app.UseRoleInitializer();
             app.UseRouting();
 
-            app.UseAuthorization();
+            
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

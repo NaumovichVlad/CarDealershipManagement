@@ -7,6 +7,9 @@ namespace CarDealershipManagement.WebUI.ViewModels
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int CarId { get; set; }
+        public string CarRegistrationNumber { get; set; }
+        public string CustomerSurname { get; set; }
+        public string CustomerName { get; set; }
         public int EmployeeId { get; set; }
         public DateTime OrderDate { get; set; }
         public bool OrderCompleteMark { get; set; }
