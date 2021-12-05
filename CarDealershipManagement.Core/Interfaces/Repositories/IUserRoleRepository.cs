@@ -8,6 +8,7 @@ namespace CarDealershipManagement.Core.Interfaces.Repositories
     public interface IUserRoleRepository
     {
         Task<IdentityResult> AddUserRoleAsync(User user, string role);
+        Task<IdentityResult> DeleteUserRoleAsync(User user, string role);
         Task<IdentityResult> AddUserAsync(User user, string pasword);
         Task<IdentityResult> CreateRole(string roleName);
         Task<IdentityResult> DeleteRole(string id);

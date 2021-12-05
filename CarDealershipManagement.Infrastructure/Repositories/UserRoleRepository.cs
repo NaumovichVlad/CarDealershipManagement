@@ -35,6 +35,10 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         {
             return _userManager.AddToRoleAsync(user, role);
         }
+        public Task<IdentityResult> DeleteUserRoleAsync(User user, string role)
+        {
+            return _userManager.RemoveFromRoleAsync(user, role);
+        }
 
         public Task<IdentityResult> AddUserAsync(User user, string pasword)
         {

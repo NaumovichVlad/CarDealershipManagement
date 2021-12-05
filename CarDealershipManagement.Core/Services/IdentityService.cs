@@ -20,6 +20,11 @@ namespace CarDealershipManagement.Core.Services
             return _userRoleRepository.AddUserRoleAsync(user, role);
         }
 
+        public Task<IdentityResult> DeleteUserRole(User user, string role)
+        {
+            return _userRoleRepository.DeleteUserRoleAsync(user, role);
+        }
+
         public Task<IdentityResult> AddNewUser(User user, string password)
         {
              return _userRoleRepository.AddUserAsync(user, password);
