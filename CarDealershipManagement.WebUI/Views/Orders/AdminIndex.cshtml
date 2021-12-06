@@ -1,54 +1,77 @@
-﻿@model CarDealershipManagement.WebUI.ViewModels.Employees.EmployeesViewModel
+﻿@model CarDealershipManagement.WebUI.ViewModels.Orders.OrdersViewModel
 <div class="p-3">
     <div class="d-flex flex-row-reverse">
         <div>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" value="@ViewData["CurrentFilter"]" type="text" name="SearchString" placeholder="Search">
-                <button asp-controller="Employees" asp-action="Index" value="Search" class="btn bg-primary text-white" type="submit">Search</button>
+                <button asp-controller="Orders" asp-action="AdminIndex" value="Search" class="btn bg-primary text-white" type="submit">Search</button>
             </form>
         </div>
     </div>
     <div class="p-3">
         <div>
-            <a asp-controller="Employees" asp-action="Create" class="btn btn-link">Добавить сотрудника</a>
+            <a asp-controller="Orders" asp-action="Create" class="btn btn-link">Добавить заказ</a>
         </div>
         <table class="table">
             <thead class="thead-dark text-white">
                 <tr>
                     <th>
-                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["SurnameSortParam"]">Фамилия</a>
+                        <a class="text-white" asp-action="AdminIndex" asp-route-sortOrder="@ViewData["OrderDateParam"]">Дата заказа</a>
                     </th>    
                     <th>
-                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Имя</a>
+                        <a class="text-white" asp-action="AdminIndex" asp-route-sortOrder="@ViewData["CarRegNumberParam"]">Номер машины</a>
                     </th> 
                     <th>
-                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["MiddleNameSortParam"]">Отчество</a>
+                        <a class="text-white" asp-action="AdminIndex" asp-route-sortOrder="@ViewData["CustomerSurnameParam"]">Фамилия заказчика</a>
                     </th>
                     <th>
-                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["PositionSortParam"]">Должность</a>
+                        Подтверждение заказа
+                    </th>
+                    <th>
+                        Фамилия сотрудника
+                    </th>
+                    <th>
+                        Дата оплаты
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var employee in Model.Employees)
+                @foreach (var order in Model.Orders)
                 {
                     <tr>
                         <td>
-                            @employee.Surname
+                            @order.OrderDate.Date
                         </td>
                         <td>
-                            @employee.Name
+                            @order.CarRegistrationNumber
                         </td>
                         <td>
-                            @employee.MiddleName
+                            @order.CustomerSurname
                         </td>
                         <td>
-                            @employee.PositionName
+                            @{
+                                string output;
+                            }
+                            @if (@order.IsApproved)
+                            {
+                                output = "Подтверждён";
+                            }
+                            else
+                            {
+                                output = "Не подтверждён";
+                            }
+                            @output
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-primary">Редактировать</a>
-                            <a asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-primary">Удалить</a>
+                             @order.EmployeeSurname 
+                        </td>
+                        <td>
+                            @order.SaleDate
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-primary">Редактировать</a>
+                            <a asp-action="Delete" asp-route-id="@order.Id" class="btn btn-primary">Удалить</a>
                         </td>
                     </tr>  
                 }
@@ -64,7 +87,7 @@
 
 <ul class="pagination pagination-sm">
 	<li class="page-item">
-		<a asp-action="Index"
+		<a asp-action="AdminIndex"
 		asp-route-pageNumber="1"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -73,7 +96,7 @@
 		</a>
 	</li>
 	<li class="page-item">
-		<a asp-action="Index"
+		<a asp-action="AdminIndex"
 		asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -83,7 +106,7 @@
 	</li>
 	<li class="page-item disabled"><a class="page-link">Cтраница @Model.Page.PageNumber</a></li>
 	<li class="page-item">
-		<a asp-action="Index"
+		<a asp-action="AdminIndex"
 		asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -92,7 +115,7 @@
 		</a>
 	</li>
 	<li class="page-item">
-		<a asp-action="Index"
+		<a asp-action="AdminIndex"
 		asp-route-pageNumber="@(Model.Page.TotalPages)"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"

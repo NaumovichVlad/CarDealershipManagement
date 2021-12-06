@@ -9,11 +9,11 @@ namespace CarDealershipManagement.WebUI.Controllers
 {
     public class CatalogSearchController : Controller
     {
-        private readonly ICarBasisService _carService;
+        private readonly ICarBasisService _carBasisService;
         private const int pageSize = 8;
         public CatalogSearchController(ICarBasisService carService)
         {
-            _carService = carService;
+            _carBasisService = carService;
         }
         public IActionResult Search(string sortOrder, string searchString, string currentFilter, int pageNumber = 1)
         {
@@ -30,7 +30,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             ViewData["CurrentFilter"] = searchString;
 
             _ = Enum.TryParse(sortOrder, out CarSortState sortState);
-            var cars = _carService.GetCars().Select(c => new CarBasisViewModel()
+            var cars = _carBasisService.GetCars().Select(c => new CarBasisViewModel()
             {
                 Id = c.Id,
                 BrandName = c.BrandName,

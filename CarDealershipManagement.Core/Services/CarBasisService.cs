@@ -11,15 +11,23 @@ namespace CarDealershipManagement.Core.Services
     public class CarBasisService : ICarBasisService
     {
         private readonly IRepository<CarBasis> _carsBasisRepository;
-        public CarBasisService(IRepository<CarBasis> carsBasisRepository)
+        private readonly IRepository<Brand> _brandRepository;
+        public CarBasisService(IRepository<CarBasis> carsBasisRepository,
+            IRepository<Brand> brandRepository)
         {
             _carsBasisRepository = carsBasisRepository;
+            _brandRepository = brandRepository;
         }
 
         public List<CarBasisDto> GetCars()
         {
-            return _carsBasisRepository.ListWithIncludes(c => c.Brand.Manufacturer)
-                .Select(c => new CarBasisDto()
+            var cars = _carsBasisRepository.List().ToList();
+            foreach (var car in cars)
+            {
+                var brand = _brandRepository.GetByIdWithIncludes(car.BrandId, b => b.Manufacturer);
+                car.Brand = brand;
+            }
+            return cars.Select(c => new CarBasisDto()
             {
                 Id = c.Id,
                 BrandName = c.Brand.BrandName,

@@ -1,51 +1,60 @@
-﻿@model CarDealershipManagement.WebUI.ViewModels.Main.SearchViewModel
+﻿@model CarDealershipManagement.WebUI.ViewModels.Customers.CustomersViewModel
 <div class="p-3">
     <div class="d-flex flex-row-reverse">
         <div>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" value="@ViewData["CurrentFilter"]" type="text" name="SearchString" placeholder="Search">
-                <button asp-controller="CatalogSearch" asp-action="Search" value="Search" class="btn bg-primary text-white" type="submit">Search</button>
+                <button asp-controller="Customers" asp-action="Index" value="Search" class="btn bg-primary text-white" type="submit">Search</button>
             </form>
         </div>
     </div>
     <div class="p-3">
+        <div>
+            <a asp-controller="Customers" asp-action="Create" class="btn btn-link">Добавить заказчика</a>
+        </div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th>
-                        Изображение
+                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["SurnameSortParam"]">Фамилия</a>
+                    </th>    
+                    <th>
+                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Имя</a>
+                    </th> 
+                    <th>
+                        <a class="text-white" asp-action="Index" asp-route-sortOrder="@ViewData["MiddleNameSortParam"]">Отчество</a>
                     </th>
                     <th>
-                        <a class="text-white" asp-action="Search" asp-route-sortOrder="@ViewData["BrandSortParam"]">Модель</a>
+                        Пасспортные данные
                     </th>
                     <th>
-                        <a class="text-white" asp-action="Search" asp-route-sortOrder="@ViewData["ManufacturerSortParam"]">Производитель</a>
-                    </th>
-                    <th>
-                        <a class="text-white" asp-action="Search" asp-route-sortOrder="@ViewData["PriceSortParam"]">Цена</a>
+                        Адрес
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var car in Model.Cars)
+                @foreach (var customer in Model.Customers)
                 {
                     <tr>
-                        <td class="w-25">
-                            @Html.Raw("<img class=\"img-fluid w-25\" src=\"data:image/jpeg;base64," 
-											        + Convert.ToBase64String(@car.Picture) + "\" alt=\"Card image cap\"/>")
+                        <td>
+                            @customer.Surname
                         </td>
                         <td>
-                            @car.BrandName
+                            @customer.Name
                         </td>
                         <td>
-                            @car.ManufacturerName
+                            @customer.MiddleName
                         </td>
                         <td>
-                            @car.Price
+                            @customer.PassportData
                         </td>
                         <td>
-                            <a asp-action="RouteToDetailsPage" asp-route-id="@car.Id" class="btn btn-primary">Подробнее</a>
+                            @customer.Address
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-primary">Редактировать</a>
+                            <a asp-action="Delete" asp-route-id="@customer.Id" class="btn btn-primary">Удалить</a>
                         </td>
                     </tr>  
                 }
@@ -61,7 +70,7 @@
 
 <ul class="pagination pagination-sm">
 	<li class="page-item">
-		<a asp-action="Search"
+		<a asp-action="Index"
 		asp-route-pageNumber="1"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -70,7 +79,7 @@
 		</a>
 	</li>
 	<li class="page-item">
-		<a asp-action="Search"
+		<a asp-action="Index"
 		asp-route-pageNumber="@(Model.Page.PageNumber - 1)"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -80,7 +89,7 @@
 	</li>
 	<li class="page-item disabled"><a class="page-link">Cтраница @Model.Page.PageNumber</a></li>
 	<li class="page-item">
-		<a asp-action="Search"
+		<a asp-action="Index"
 		asp-route-pageNumber="@(Model.Page.PageNumber + 1)"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -89,7 +98,7 @@
 		</a>
 	</li>
 	<li class="page-item">
-		<a asp-action="Search"
+		<a asp-action="Index"
 		asp-route-pageNumber="@(Model.Page.TotalPages)"
         asp-route-sortOrder="@ViewData["CurrentSort"]"
         asp-route-currentFilter="@ViewData["CurrentFilter"]"

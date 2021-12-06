@@ -1,0 +1,27 @@
+﻿@model CarDealershipManagement.WebUI.ViewModels.Orders.CreateOrderViewModel
+<h2 class="pt-3">Добавление нового заказа</h2>
+<form method="post" asp-controller="Orders" asp-action="Create">
+    <div asp-validation-summary="ModelOnly"></div>
+    <fieldset>
+        <div class="form-group">
+            <label asp-for="Order">Фамилия</label><br />
+            <input asp-for="Employee.Surname" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Employee.Name">Имя</label><br />
+            <input asp-for="Employee.Name" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Employee.MiddleName">Отчество</label><br />
+            <input asp-for="Employee.MiddleName" class="form-control w-25" />
+            <span></span>
+        </div>
+        @Html.ListBoxFor(m => m.SelectedPositionIds, new SelectList(Model.Positions, "Id", "Name"), new { @class = "form-control w-25" })
+        <div class="pt-3">
+            <p><input type="submit" class="btn btn-primary" value="Отправить" /></p>
+        </div>
+    </fieldset>
+    
+</form>

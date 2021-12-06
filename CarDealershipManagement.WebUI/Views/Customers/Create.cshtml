@@ -1,0 +1,36 @@
+﻿@model CarDealershipManagement.WebUI.ViewModels.Customers.CustomerViewModel
+<h2 class="pt-3">Добавление заказчика</h2>
+<form method="post" asp-controller="Customers" asp-action="Create">
+    <div asp-validation-summary="ModelOnly"></div>
+    <fieldset>
+        <div class="form-group">
+            <label asp-for="Surname">Фамилия</label><br />
+            <input asp-for="Surname" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name">Имя</label><br />
+            <input asp-for="Name" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MiddleName">Отчество</label><br />
+            <input asp-for="MiddleName" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PassportData">Пасспортные данные</label><br />
+            <input asp-for="PassportData" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address">Адресс</label><br />
+            <input asp-for="Address" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="pt-3">
+            <p><input type="submit" class="btn btn-primary" value="Добавить" /></p>
+        </div>
+    </fieldset>
+    
+</form>

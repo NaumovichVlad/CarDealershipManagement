@@ -4,6 +4,7 @@ using CarDealershipManagement.Core.ModelsDto;
 using CarDealershipManagement.WebUI.ViewModels.Employees;
 using CarDealershipManagement.WebUI.ViewModels.Main;
 using CarDealershipManagement.WebUI.ViewModels.Positions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 
 namespace CarDealershipManagement.WebUI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class EmployeesController : Controller
     {
         private readonly IEmployeeService _employeeService;
@@ -31,7 +33,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             ViewData["SurnameSortParam"] = sortOrder == EmployeeSortState.SurnameAsc.ToString() ? EmployeeSortState.SurnameDesc.ToString() : EmployeeSortState.SurnameAsc.ToString();
             ViewData["NameSortParam"] = sortOrder == EmployeeSortState.NameAsc.ToString() ? EmployeeSortState.NameDesc.ToString() : EmployeeSortState.NameAsc.ToString();
             ViewData["MiddleNameSortParam"] = sortOrder == EmployeeSortState.MiddleNameAsc.ToString() ? EmployeeSortState.MiddleNameDesc.ToString() : EmployeeSortState.MiddleNameAsc.ToString();
-            ViewData["PositionParam"] = sortOrder == EmployeeSortState.PositionAsc.ToString() ? EmployeeSortState.PositionDesc.ToString() : EmployeeSortState.PositionAsc.ToString();
+            ViewData["PositionSortParam"] = sortOrder == EmployeeSortState.PositionAsc.ToString() ? EmployeeSortState.PositionDesc.ToString() : EmployeeSortState.PositionAsc.ToString();
             ViewData["CurrentSort"] = sortOrder;
 
             if (searchString != null)

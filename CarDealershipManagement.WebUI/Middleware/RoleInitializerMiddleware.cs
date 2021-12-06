@@ -65,6 +65,7 @@ namespace CarDealershipManagement.WebUI.Middleware
                     await userManager.AddToRoleAsync(customer, "customer");
                     var customerDb = userManager.GetUsersInRoleAsync("customer").Result.First();
                     dbContext.Customers.First().UserId = customerDb.Id;
+                    dbContext.SaveChanges();
                 }
             }
             if (await userManager.FindByNameAsync(employeeUserName) == null)
@@ -76,6 +77,7 @@ namespace CarDealershipManagement.WebUI.Middleware
                     await userManager.AddToRoleAsync(employee, "employee");
                     var employeeDb = userManager.GetUsersInRoleAsync("employee").Result.First();
                     dbContext.Employees.First().UserId = employeeDb.Id;
+                    dbContext.SaveChanges();
                 }
             }
         }

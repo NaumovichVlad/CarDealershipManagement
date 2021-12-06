@@ -31,7 +31,6 @@ namespace CarDealershipManagement.WebUI.Controllers
         [AllowAnonymous]
         public IActionResult Index(int carId = 0)
         {
-            carId = carId == 0 ? CarId : carId;
             var specifications = _mapper.Map<List<CarSpecificationViewModel>>(_carSpecificationService.GetCarSpecificationsByCarId(carId));
             var car = _mapper.Map<CarBasisViewModel>(_carBasisService.GetCarById(carId));
             return View(new CatalogViewModel { 
