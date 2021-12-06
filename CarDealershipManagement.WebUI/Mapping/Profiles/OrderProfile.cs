@@ -8,7 +8,7 @@ namespace CarDealershipManagement.WebUI.Mapping.Profiles
     {
         public OrderProfile()
         {
-            CreateMap<OrderDto, OrderViewModel>();
+            CreateMap<OrderDto, OrderViewModel>().ReverseMap();
         }
     }
 }

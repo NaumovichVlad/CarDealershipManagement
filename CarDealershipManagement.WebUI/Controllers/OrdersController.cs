@@ -121,7 +121,9 @@ namespace CarDealershipManagement.WebUI.Controllers
             {
                 Order = new OrderViewModel()
                 {
-                    OrderDate = DateTime.Now
+                    OrderDate = DateTime.Now,
+                    SaleDate = DateTime.Now,
+                    OrderCompleteMark = false
                 },
                 Cars = _mapper.Map<List<CarViewModel>>(_carService.GetCars()),
                 Customers = _mapper.Map<List<CustomerViewModel>>(_customerService.GetCustomers()),

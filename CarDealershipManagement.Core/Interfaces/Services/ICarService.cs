@@ -5,7 +5,7 @@ namespace CarDealershipManagement.Core.Interfaces.Services
 {
     public interface ICarService
     {
-        List<CarDto> GetCars();
+        IEnumerable<CarDto> GetCars();
         List<CarDto> GetCarsByCarBasisId(int carBasisId);
         CarDto GetFreeCarByCarBasisId(int carBasisId);
         bool CheckIsFree(int carBasisId);

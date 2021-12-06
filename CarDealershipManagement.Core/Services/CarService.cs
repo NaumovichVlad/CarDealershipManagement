@@ -23,7 +23,7 @@ namespace CarDealershipManagement.Core.Services
             _carBasisRepository = carBasisRepository;
         }
 
-        public List<CarDto> GetCars()
+        public IEnumerable<CarDto> GetCars()
         {
             return _carsRepository.ListWithIncludes(c => c.CarBasis, c => c.CarBasis.Brand, c => c.CarBasis.Brand.Manufacturer)
                 .Select(c => new CarDto()
@@ -37,7 +37,7 @@ namespace CarDealershipManagement.Core.Services
                     Picture = c.CarBasis.Picture,
                     Color = c.CarBasis.Color,
                     Price = Math.Round(c.CarBasis.Price, 2)
-                }).ToList();
+                });
         }
         public bool CheckIsFree(int carBasisId)
         {
