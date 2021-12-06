@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.ModelsDto;
-using CarDealershipManagement.WebUI.ViewModels;
+using CarDealershipManagement.WebUI.ViewModels.Cars;
+using CarDealershipManagement.WebUI.ViewModels.CarsEquipments;
+using CarDealershipManagement.WebUI.ViewModels.Main;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

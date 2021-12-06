@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CarDealershipManagement.WebUI.ViewModels.Main;
+using System.Collections.Generic;
 
-namespace CarDealershipManagement.WebUI.ViewModels
+namespace CarDealershipManagement.WebUI.ViewModels.Orders
 {
     public class OrdersViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CarDealershipManagement.WebUI.ViewModels
+namespace CarDealershipManagement.WebUI.ViewModels.Main
 {
     public class PageViewModel
     {

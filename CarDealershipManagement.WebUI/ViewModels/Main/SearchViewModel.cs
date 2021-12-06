@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CarDealershipManagement.WebUI.ViewModels.CarsBasis;
+using System.Collections.Generic;
 
-namespace CarDealershipManagement.WebUI.ViewModels
+namespace CarDealershipManagement.WebUI.ViewModels.Main
 {
     public class SearchViewModel
     {

@@ -1,6 +1,7 @@
 ﻿using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
-using CarDealershipManagement.WebUI.ViewModels;
+using CarDealershipManagement.WebUI.ViewModels.Main;
+using CarDealershipManagement.WebUI.ViewModels.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

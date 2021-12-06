@@ -2,7 +2,8 @@
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Core.ModelsDto;
-using CarDealershipManagement.WebUI.ViewModels;
+using CarDealershipManagement.WebUI.ViewModels.Account;
+using CarDealershipManagement.WebUI.ViewModels.Customers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;

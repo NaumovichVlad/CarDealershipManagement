@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CarDealershipManagement.WebUI.ViewModels.CarsBasis;
+using CarDealershipManagement.WebUI.ViewModels.CarsSpecifications;
+using System.Collections.Generic;
 
-namespace CarDealershipManagement.WebUI.ViewModels
+namespace CarDealershipManagement.WebUI.ViewModels.Main
 {
     public class CatalogViewModel
     {

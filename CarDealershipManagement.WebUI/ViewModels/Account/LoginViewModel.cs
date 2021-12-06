@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CarDealershipManagement.WebUI.ViewModels
+namespace CarDealershipManagement.WebUI.ViewModels.Account
 {
     public class LoginViewModel
     {

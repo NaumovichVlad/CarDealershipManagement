@@ -1,4 +1,4 @@
-﻿namespace CarDealershipManagement.WebUI.ViewModels
+﻿namespace CarDealershipManagement.WebUI.ViewModels.CarsBasis
 {
     public class CarBasisViewModel
     {

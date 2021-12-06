@@ -14,6 +14,7 @@
             {
                 <div class="d-flex flex-row">
                     <div><a class="nav-link text-white font-weight-bold" asp-area="" asp-controller="Users" asp-action="Index">Управление пользователями</a></div>
+                    <div><a class="nav-link text-white font-weight" asp-area="" asp-controller="Employees" asp-action="Index">Управление сотрудниками</a></div>
                 </div>
             }
             else if (User.IsInRole("employee"))
