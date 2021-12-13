@@ -1,14 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31612.314
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.WebUI", "CarDealershipManagement.WebUI\CarDealershipManagement.WebUI.csproj", "{F7726A30-525B-49AF-A932-A3689AC537DA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Infrastructure", "CarDealershipManagement.Infrastructure\CarDealershipManagement.Infrastructure.csproj", "{7E126DD2-FA5E-4695-AE45-5FAC993537D3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Core", "CarDealershipManagement.Core\CarDealershipManagement.Core.csproj", "{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{D55BFB22-C162-4700-9EAC-5F69CCD17717}"
 	ProjectSection(SolutionItems) = preProject
 		Images\149105744.jpg = Images\149105744.jpg
@@ -525,24 +519,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{D55BFB
 		Images\used-2012-bmw-3_series-4drsdn328irwd-8522-8507368-2-400.jpeg = Images\used-2012-bmw-3_series-4drsdn328irwd-8522-8507368-2-400.jpeg
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Infrastructure", "CarDealershipManagement.Infrastructure\CarDealershipManagement.Infrastructure.csproj", "{0E923FF3-DE4E-4A5E-A8C4-7C7684594F33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.Core", "CarDealershipManagement.Core\CarDealershipManagement.Core.csproj", "{AC3B7BCC-DB6F-4CD4-86D7-31853913D8C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealershipManagement.WebUI", "CarDealershipManagement.WebUI\CarDealershipManagement.WebUI.csproj", "{7C02E0E0-CA5F-4595-818F-0049113C2003}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7726A30-525B-49AF-A932-A3689AC537DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7726A30-525B-49AF-A932-A3689AC537DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7726A30-525B-49AF-A932-A3689AC537DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7726A30-525B-49AF-A932-A3689AC537DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E126DD2-FA5E-4695-AE45-5FAC993537D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E126DD2-FA5E-4695-AE45-5FAC993537D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E126DD2-FA5E-4695-AE45-5FAC993537D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E126DD2-FA5E-4695-AE45-5FAC993537D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E2B3401-7C9D-4176-9C1B-1B0576B4327D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E923FF3-DE4E-4A5E-A8C4-7C7684594F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E923FF3-DE4E-4A5E-A8C4-7C7684594F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E923FF3-DE4E-4A5E-A8C4-7C7684594F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E923FF3-DE4E-4A5E-A8C4-7C7684594F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3B7BCC-DB6F-4CD4-86D7-31853913D8C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3B7BCC-DB6F-4CD4-86D7-31853913D8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3B7BCC-DB6F-4CD4-86D7-31853913D8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3B7BCC-DB6F-4CD4-86D7-31853913D8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C02E0E0-CA5F-4595-818F-0049113C2003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C02E0E0-CA5F-4595-818F-0049113C2003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C02E0E0-CA5F-4595-818F-0049113C2003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C02E0E0-CA5F-4595-818F-0049113C2003}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

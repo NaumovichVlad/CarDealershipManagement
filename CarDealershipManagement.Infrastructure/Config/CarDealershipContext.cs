@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarDealershipManagement.Infrastructure.Config
 {
+    /// <summary>
+    /// Класс для доступа к ьазе данных
+    /// </summary>
     public class CarDealershipContext : IdentityDbContext<User>
     {
         public DbSet<Brand> Brands => Set<Brand>();

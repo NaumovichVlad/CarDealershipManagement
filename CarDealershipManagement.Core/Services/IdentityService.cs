@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Core.Services
 {
+    /// <summary>
+    /// Сервис для раьоты с репозиторием
+    /// </summary>
     public class IdentityService : IIdentityService
     {
         private readonly IUserRoleRepository _userRoleRepository;

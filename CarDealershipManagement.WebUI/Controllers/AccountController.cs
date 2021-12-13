@@ -36,7 +36,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new() { UserName = model.UserName };
+                User user = new User() { UserName = model.UserName };
                 var customer = new CustomerViewModel()
                 {
                     Surname = model.Surname,

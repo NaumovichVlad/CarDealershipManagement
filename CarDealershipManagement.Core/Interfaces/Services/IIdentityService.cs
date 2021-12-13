@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Core.Interfaces.Services
 {
+    /// <summary>
+    /// Интерфейс для взаимодействия с сервисом
+    /// </summary>
     public interface IIdentityService
     {
         Task<IdentityResult> AddNewUserRole(User user, string role);

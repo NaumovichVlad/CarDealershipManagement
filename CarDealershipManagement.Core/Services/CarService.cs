@@ -8,6 +8,9 @@ using System.Linq;
 
 namespace CarDealershipManagement.Core.Services
 {
+    /// <summary>
+    /// Сервис для раьоты с репозиторием
+    /// </summary>
     public class CarService : ICarService
     {
         private readonly IRepository<Car> _carsRepository;

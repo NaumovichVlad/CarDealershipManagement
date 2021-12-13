@@ -2,14 +2,14 @@
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Core.ModelsDto;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Core.Services
 {
+    /// <summary>
+    /// Сервис для раьоты с репозиторием
+    /// </summary>
     public class PositionService : IPositionService
     {
         private readonly IRepository<Position> _positionsRepository;

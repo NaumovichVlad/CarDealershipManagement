@@ -29,7 +29,7 @@ namespace CarDealershipManagement.WebUI.Controllers
                 ManufacturerName = c.ManufacturerName,
                 Price = c.Price,
             }).ToList();
-            PageViewModel pageViewModel = new(_carsService.Count(), pageNumber, pageSize);
+            PageViewModel pageViewModel = new PageViewModel(_carsService.Count(), pageNumber, pageSize);
             var model = new CarsBasisViewModel { Page = pageViewModel, Cars = cars };
             return View(model);
         }

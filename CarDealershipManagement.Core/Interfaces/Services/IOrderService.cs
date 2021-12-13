@@ -5,6 +5,9 @@ namespace CarDealershipManagement.Core.Interfaces.Services
 {
     public interface IOrderService
     {
+        /// <summary>
+        /// Интерфейс для взаимодействия с сервисом
+        /// </summary>
         OrderDto GetOrderById(int orderId);
         List<OrderDto> GetOrders();
         void CreateNewOrder(CarDto car, CustomerDto customer);

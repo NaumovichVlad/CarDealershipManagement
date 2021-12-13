@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace CarDealershipManagement.Core.Interfaces.Services
 {
+    /// <summary>
+    /// Интерфейс для взаимодействия с сервисом
+    /// </summary>
     public interface ICustomerService
     {
         CustomerDto GetCustomerById(int id);

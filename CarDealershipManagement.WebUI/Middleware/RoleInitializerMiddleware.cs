@@ -49,7 +49,7 @@ namespace CarDealershipManagement.WebUI.Middleware
             }
             if (await userManager.FindByNameAsync(adminUserName) == null)
             {
-                User admin = new() { UserName = adminUserName };
+                User admin = new User() { UserName = adminUserName };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
@@ -58,7 +58,7 @@ namespace CarDealershipManagement.WebUI.Middleware
             }
             if (await userManager.FindByNameAsync(customerUserName) == null)
             {
-                User customer = new() { UserName = customerUserName };
+                User customer = new User() { UserName = customerUserName };
                 IdentityResult result = await userManager.CreateAsync(customer, customerPassword);
                 if (result.Succeeded)
                 {
@@ -70,7 +70,7 @@ namespace CarDealershipManagement.WebUI.Middleware
             }
             if (await userManager.FindByNameAsync(employeeUserName) == null)
             {
-                User employee = new() { UserName = employeeUserName };
+                User employee = new User() { UserName = employeeUserName };
                 IdentityResult result = await userManager.CreateAsync(employee, employeePassword);
                 if (result.Succeeded)
                 {

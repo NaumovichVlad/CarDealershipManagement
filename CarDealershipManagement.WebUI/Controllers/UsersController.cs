@@ -49,7 +49,7 @@ namespace CarDealershipManagement.WebUI.Controllers
                 // получем список ролей пользователя
                 var userRoles = await _identityService.GetUserRoles(user);
                 var allRoles = _identityService.RolesList();
-                UserViewModel model = new()
+                UserViewModel model = new UserViewModel()
                 {
                     UserId = user.Id,
                     UserName = user.UserName,

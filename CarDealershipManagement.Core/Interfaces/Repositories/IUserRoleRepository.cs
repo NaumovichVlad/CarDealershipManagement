@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Core.Interfaces.Repositories
 {
+    /// <summary>
+    /// Интерфейс для взаимодействия с репозиториями пользователя
+    /// </summary>
     public interface IUserRoleRepository
     {
         Task<IdentityResult> AddUserRoleAsync(User user, string role);

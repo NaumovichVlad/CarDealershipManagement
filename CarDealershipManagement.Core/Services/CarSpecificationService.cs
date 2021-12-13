@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace CarDealershipManagement.Core.Services
 {
+    /// <summary>
+    /// Сервис для раьоты с репозиторием
+    /// </summary>
     public class CarSpecificationService : ICarSpecificationService
     {
         private readonly IRepository<CarSpecification> _repository;

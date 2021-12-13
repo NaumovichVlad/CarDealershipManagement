@@ -9,6 +9,10 @@ using System.Linq.Expressions;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Общий класс для репозиториев
+    /// </summary>
+    /// <typeparam name="T">Класс модели базы данных</typeparam>
     public abstract class Repository<T> : IRepository<T> 
         where T : EntityBase
     {

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CarDealershipManagement.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Обеспечивает доступ к данным Ms Sql Server
+    /// </summary>
     public class UserRoleRepository : IUserRoleRepository
     {
         private readonly RoleManager<IdentityRole> _roleManager;

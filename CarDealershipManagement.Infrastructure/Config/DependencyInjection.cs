@@ -9,7 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CarDealershipManagement.Infrastructure.Config
 {
-
+    /// <summary>
+    /// Класс для создания инверсии зависимостей репозиториев
+    /// </summary>
     public static class DependencyInjection
     {
         public static void AddDbContext(this IServiceCollection services, string connectionString)

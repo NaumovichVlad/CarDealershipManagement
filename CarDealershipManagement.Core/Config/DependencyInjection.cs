@@ -4,7 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CarDealershipManagement.Core.Config
 {
-
+    /// <summary>
+    /// Класс для добавления инверсии зависимостей в сервисы
+    /// </summary>
     public static class DependencyInjection
     {
         public static void AddServices(this IServiceCollection services)

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace CarDealershipManagement.WebUI.Middleware
 {
+    /// <summary>
+    /// Класс для заполнения бд тестовыми записями
+    /// </summary>
     public class DbTestInitializerMiddleware
     {
 

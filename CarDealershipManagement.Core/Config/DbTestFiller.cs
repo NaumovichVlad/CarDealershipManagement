@@ -5,6 +5,9 @@ using System.IO;
 
 namespace CarDealershipManagement.Core.Config
 {
+    /// <summary>
+    /// Класс для заполнения базы данных тестовыми записями
+    /// </summary>
     public static class DbTestFiller
     {
         private static readonly int _lowCount = 100;
@@ -77,7 +80,7 @@ namespace CarDealershipManagement.Core.Config
             {
                 var image = Image.FromFile(images[i % images.Length]);
                 byte[] imageBytes;
-                using (MemoryStream ms = new())
+                using (MemoryStream ms = new MemoryStream())
                 {
                     image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     imageBytes = ms.ToArray();
@@ -226,8 +229,8 @@ namespace CarDealershipManagement.Core.Config
 
         private static DateTime GetRandomDate()
         {
-            Random random = new();
-            DateTime start = new(2020, 1, 1);
+            Random random = new Random();
+            DateTime start = new DateTime(2020, 1, 1);
             int range = (DateTime.Today - start).Days;
             return start.AddDays(random.Next(range));
         }

@@ -6,6 +6,10 @@ using System.Linq.Expressions;
 
 namespace CarDealershipManagement.Core.Interfaces.Repositories
 {
+    /// <summary>
+    /// Интерфейс для взаимодействия с репозиториями
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IRepository<T>
         where T : EntityBase
     {
