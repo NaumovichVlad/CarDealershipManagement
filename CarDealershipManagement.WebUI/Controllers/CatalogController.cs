@@ -33,9 +33,10 @@ namespace CarDealershipManagement.WebUI.Controllers
         {
             var specifications = _mapper.Map<List<CarSpecificationViewModel>>(_carSpecificationService.GetCarSpecificationsByCarId(carId));
             var car = _mapper.Map<CarBasisViewModel>(_carBasisService.GetCarById(carId));
-            return View(new CatalogViewModel { 
-                Car = car, 
-                Specifications = specifications, 
+            return View(new CatalogViewModel
+            {
+                Car = car,
+                Specifications = specifications,
                 IsInStock = _carService.CheckIsFree(carId)
             });
         }
@@ -44,7 +45,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         [HttpGet]
         public IActionResult RouteToHome()
         {
-            return RedirectToAction("Index", "Home", new {});
+            return RedirectToAction("Index", "Home", new { });
         }
 
         [AllowAnonymous]
@@ -52,7 +53,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         public IActionResult Buy(int id)
         {
             if (User.IsInRole("customer"))
-                return RedirectToAction("Index", "Purchase", new {CarId = id});
+                return RedirectToAction("Index", "Purchase", new { CarId = id });
             else
                 return RedirectToAction("Login", "Account");
         }

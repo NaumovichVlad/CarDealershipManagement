@@ -20,7 +20,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         private readonly IMapper _mapper;
         private const int pageSize = 10;
 
-        public EmployeesController(IEmployeeService employeeService, 
+        public EmployeesController(IEmployeeService employeeService,
             IPositionService positionService, IMapper mapper)
         {
             _employeeService = employeeService;
@@ -78,7 +78,7 @@ namespace CarDealershipManagement.WebUI.Controllers
                 Employee = new EmployeeViewModel(),
                 Positions = _mapper.Map<List<PositionViewModel>>(_positionService.GetPositions()),
                 SelectedPositionIds = new List<int>()
-            }) ;
+            });
         }
 
         [HttpPost]

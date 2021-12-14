@@ -1,7 +1,7 @@
-﻿using CarDealershipManagement.Core.ModelsDto;
-using CarDealershipManagement.Core.Interfaces.Repositories;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
+using CarDealershipManagement.Core.ModelsDto;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +13,7 @@ namespace CarDealershipManagement.Core.Services
     public class CarEquipmentService : ICarEquipmentService
     {
         private readonly IRepository<CarEquipment> _repository;
-        public CarEquipmentService (IRepository<CarEquipment> carEquipmentRepository)
+        public CarEquipmentService(IRepository<CarEquipment> carEquipmentRepository)
         {
             _repository = carEquipmentRepository;
         }

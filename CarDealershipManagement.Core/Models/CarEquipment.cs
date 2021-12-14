@@ -5,6 +5,6 @@
         public int CarId { get; set; }
         public Car Car { get; set; }
         public int OptionalEquipmentId { get; set; }
-        public OptionalEquipment OptionalEquipment {  get; set;}
+        public OptionalEquipment OptionalEquipment { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace CarDealershipManagement.WebUI.Middleware
             return _next.Invoke(context);
         }
 
-        public static async Task InitializeAsync(UserManager<User> userManager, 
+        public static async Task InitializeAsync(UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager, CarDealershipContext dbContext)
         {
             string adminUserName = "testAdmin";

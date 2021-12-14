@@ -1,6 +1,27 @@
-﻿namespace CarDealershipManagement.WebUI.Views.Orders
-{
-    public class Delete
-    {
-    }
-}
+﻿@model CarDealershipManagement.WebUI.ViewModels.Orders.CreateOrderViewModel
+<h2 class="pt-3">Обновление заказа</h2>
+<form method="post" asp-controller="Orders" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <fieldset>
+        @Html.HiddenFor(x => x.Order.Id)
+        <div class="form-group">
+            <label asp-for="Order.OrderDate">Дата заказа</label><br />
+            <input asp-for="Order.OrderDate" class="form-control w-25" />
+            <span></span>
+        </div>
+        <label>Сотрудник</label><br />
+        @Html.ListBoxFor(m => m.SelectedEmployeeIds, new SelectList(Model.Employees, "Id", "Surname"), new { @class = "form-control w-25" })
+        <label>Заказчик</label><br />
+        @Html.ListBoxFor(m => m.SelectedCustomerIds, new SelectList(Model.Customers, "Id", "Surname"), new { @class = "form-control w-25" })
+        <label>Машина</label><br />
+        @Html.ListBoxFor(m => m.SelectedCarIds, new SelectList(Model.Cars, "Id", "RegistrationNumber"), new { @class = "form-control w-25" })
+        <div class="pt-3">
+            <div class="form-group">
+                <label asp-for="Order.SaleDate">Дата продажи</label><br />
+                <input asp-for="Order.SaleDate" class="form-control w-25" />
+                <span></span>
+            </div>
+            <p><input type="submit" class="btn btn-primary" value="Обновить" /></p>
+        </div>
+    </fieldset>
+</form>

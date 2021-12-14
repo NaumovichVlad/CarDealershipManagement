@@ -18,7 +18,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         private readonly ICustomerService _customerService;
         private readonly IMapper _mapper;
 
-        public AccountController(SignInManager<User> signInManager, IIdentityService identityService, 
+        public AccountController(SignInManager<User> signInManager, IIdentityService identityService,
             IMapper mapper, ICustomerService customerService)
         {
             _signInManager = signInManager;
@@ -124,5 +124,5 @@ namespace CarDealershipManagement.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
     }
-    
+
 }

@@ -1,7 +1,7 @@
 ﻿using CarDealershipManagement.Core.Interfaces.Repositories;
+using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
 using CarDealershipManagement.Core.ModelsDto;
-using CarDealershipManagement.Core.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace CarDealershipManagement.Core.Services
 
         public OrderDto GetOrderById(int orderId)
         {
-            var order = _orderRepository.GetByIdWithIncludes(orderId, o => o.Car, o => o.Customer, o => o.Employee); 
+            var order = _orderRepository.GetByIdWithIncludes(orderId, o => o.Car, o => o.Customer, o => o.Employee);
             return new OrderDto
             {
                 Id = order.Id,
@@ -31,8 +31,8 @@ namespace CarDealershipManagement.Core.Services
                 CarRegistrationNumber = order.Car.RegistrationNumber,
                 CustomerName = order.Customer.Name,
                 CustomerSurname = order.Customer.Surname,
-                EmployeeName = order.Employee.Name,
-                EmployeeSurname = order.Employee.Surname,
+                EmployeeName = order.Employee != null ? order.Employee.Name : "-",
+                EmployeeSurname = order.Employee != null ? order.Employee.Surname : "-",
                 IsApproved = order.IsApproved,
                 OrderCompleteMark = order.OrderCompleteMark,
                 SaleDate = order.SaleDate,
@@ -50,8 +50,8 @@ namespace CarDealershipManagement.Core.Services
                 CarRegistrationNumber = o.Car.RegistrationNumber,
                 CustomerName = o.Customer.Name,
                 CustomerSurname = o.Customer.Surname,
-                EmployeeName = o.Employee.Name,
-                EmployeeSurname = o.Employee.Surname,
+                EmployeeName = o.Employee != null ? o.Employee.Name : "-",
+                EmployeeSurname = o.Employee != null ? o.Employee.Surname : "-",
                 IsApproved = o.IsApproved,
                 OrderCompleteMark = o.OrderCompleteMark,
                 SaleDate = o.SaleDate,

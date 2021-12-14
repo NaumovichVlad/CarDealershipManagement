@@ -1,7 +1,5 @@
-﻿using CarDealershipManagement.Core.Interfaces;
-using CarDealershipManagement.Core.Interfaces.Repositories;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Models;
-using CarDealershipManagement.Infrastructure.Config;
 using CarDealershipManagement.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace CarDealershipManagement.Core.ModelsDto
+﻿namespace CarDealershipManagement.Core.ModelsDto
 {
     public class CarBasisDto
     {

@@ -30,7 +30,7 @@ namespace CarDealershipManagement.Core.Services
 
         public Task<IdentityResult> AddNewUser(User user, string password)
         {
-             return _userRoleRepository.AddUserAsync(user, password);
+            return _userRoleRepository.AddUserAsync(user, password);
         }
 
         public Task<IdentityResult> DeleteUser(User user)

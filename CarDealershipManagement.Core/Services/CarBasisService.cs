@@ -1,7 +1,7 @@
-﻿using CarDealershipManagement.Core.ModelsDto;
-using CarDealershipManagement.Core.Interfaces.Repositories;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
+using CarDealershipManagement.Core.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

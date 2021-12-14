@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarDealershipManagement.Core.ModelsDto
+﻿namespace CarDealershipManagement.Core.ModelsDto
 {
     public class CarDto
     {
         public int Id { get; set; }
+        public int BrandId { get; set; }
         public string BrandName { get; set; }
         public string ManufacturerName { get; set; }
         public string RegistrationNumber { get; set; }

@@ -176,7 +176,7 @@ namespace CarDealershipManagement.Core.Config
         public static Employee[] GetTestEmployees()
         {
             var random = new Random();
-            var employees = new Employee[_middleCount]; 
+            var employees = new Employee[_middleCount];
             for (var i = 0; i < _middleCount; i++)
             {
                 employees[i] = new Employee()
@@ -185,7 +185,7 @@ namespace CarDealershipManagement.Core.Config
                     Name = GetRandomString(15),
                     MiddleName = GetRandomString(15),
                     PositionId = random.Next(1, _lowCount),
-                
+
                 };
             }
             return employees;

@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using CarDealershipManagement.Core.Config;
 using CarDealershipManagement.Infrastructure.Config;
 using CarDealershipManagement.WebUI.Middleware;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace CarDealershipManagement.WebUI
@@ -59,7 +59,7 @@ namespace CarDealershipManagement.WebUI
             app.UseRoleInitializer();
             app.UseRouting();
 
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 

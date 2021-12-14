@@ -1,5 +1,3 @@
-using System;
-
 namespace CarDealershipManagement.WebUI.Models
 {
     public class ErrorViewModel

@@ -7,6 +7,6 @@ namespace CarDealershipManagement.WebUI.ViewModels.Employees
     {
         public List<EmployeeViewModel> Employees { get; set; }
         public PageViewModel Page { get; set; }
-        
+
     }
 }

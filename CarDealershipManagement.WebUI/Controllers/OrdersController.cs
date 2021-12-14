@@ -156,9 +156,9 @@ namespace CarDealershipManagement.WebUI.Controllers
                 Cars = _mapper.Map<List<CarViewModel>>(_carService.GetCars()),
                 Customers = _mapper.Map<List<CustomerViewModel>>(_customerService.GetCustomers()),
                 Employees = _mapper.Map<List<EmployeeViewModel>>(_employeeService.GetEmployees()),
-                SelectedCarIds = new List<int>() { order.CarId},
-                SelectedEmployeeIds = new List<int>() { (int)order.EmployeeId},
-                SelectedCustomerIds = new List<int>() { order.CustomerId}
+                SelectedCarIds = new List<int>() { order.CarId },
+                SelectedEmployeeIds = new List<int>() { (int)order.EmployeeId },
+                SelectedCustomerIds = new List<int>() { order.CustomerId }
             });
         }
 
@@ -169,7 +169,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             model.Order.CarId = model.SelectedCarIds.First();
             model.Order.CustomerId = model.SelectedCustomerIds.First();
             model.Order.EmployeeId = model.SelectedEmployeeIds.First();
-            _orderService.EditOrder(_mapper.Map<OrderDto>(model));
+            _orderService.EditOrder(_mapper.Map<OrderDto>(model.Order));
             return RedirectToAction("AdminIndex");
         }
 

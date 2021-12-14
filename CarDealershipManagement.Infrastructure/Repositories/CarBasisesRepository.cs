@@ -7,7 +7,7 @@ namespace CarDealershipManagement.Infrastructure.Repositories
     /// Обеспечивает доступ к данным Ms Sql Server
     /// </summary>
     public class CarBasisesRepository : Repository<CarBasis>
-    {  
+    {
         public CarBasisesRepository(CarDealershipContext dbContext) : base(dbContext)
         { }
     }

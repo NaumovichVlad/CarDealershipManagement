@@ -2,6 +2,6 @@
 {
     public class Position : EntityBase
     {
-        public string PositionName {  get; set; }
+        public string PositionName { get; set; }
     }
 }

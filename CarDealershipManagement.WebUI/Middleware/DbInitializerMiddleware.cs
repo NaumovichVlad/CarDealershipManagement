@@ -32,7 +32,7 @@ namespace CarDealershipManagement.WebUI.Middleware
             if (db.Cars.Any())
                 return;
 
-            
+
             db.Manufacturers.AddRange(DbTestFiller.GetTestManufacturers());
             db.SaveChanges();
             db.Brands.AddRange(DbTestFiller.GetTestBrands());

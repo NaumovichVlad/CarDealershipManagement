@@ -49,7 +49,7 @@ namespace CarDealershipManagement.WebUI.Controllers
             var car = _carService.GetCarById(id);
             var customer = _customerService.GetCustomerByUserName(User.Identity.Name);
             _orderService.CreateNewOrder(_mapper.Map<CarDto>(car), customer);
-            return RedirectToAction("Index", "ShoppingCart", new {});
+            return RedirectToAction("Index", "ShoppingCart", new { });
         }
     }
 }

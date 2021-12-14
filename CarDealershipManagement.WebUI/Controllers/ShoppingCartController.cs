@@ -18,7 +18,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         private readonly ICustomerService _customerService;
         private readonly ICarService _carService;
         private readonly IMapper _mapper;
-        public ShoppingCartController(IOrderService orderService, ICustomerService customerService, 
+        public ShoppingCartController(IOrderService orderService, ICustomerService customerService,
             IMapper mapper, ICarService carService)
         {
             _orderService = orderService;

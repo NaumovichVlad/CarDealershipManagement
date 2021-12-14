@@ -13,7 +13,7 @@ namespace CarDealershipManagement.Infrastructure.Repositories
     /// Общий класс для репозиториев
     /// </summary>
     /// <typeparam name="T">Класс модели базы данных</typeparam>
-    public abstract class Repository<T> : IRepository<T> 
+    public abstract class Repository<T> : IRepository<T>
         where T : EntityBase
     {
         private readonly CarDealershipContext _dbContext;
@@ -68,7 +68,7 @@ namespace CarDealershipManagement.Infrastructure.Repositories
             return Include(includeProperties).First(t => t.Id == id);
         }
 
-        public virtual IEnumerable<T> GetRangeWithIncludes(int startIndex, int endIndex, 
+        public virtual IEnumerable<T> GetRangeWithIncludes(int startIndex, int endIndex,
             params Expression<Func<T, object>>[] includeProperties)
         {
             var query = Include(includeProperties);
@@ -83,7 +83,7 @@ namespace CarDealershipManagement.Infrastructure.Repositories
         {
             return Include(includeProperties).Where(predicate);
         }
-        private  IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
+        private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _dbSet.AsNoTracking();
             return includeProperties

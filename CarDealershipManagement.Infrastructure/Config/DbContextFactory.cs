@@ -1,6 +1,5 @@
-﻿using CarDealershipManagement.Infrastructure.Config;
-using Microsoft.EntityFrameworkCore;
- 
+﻿using Microsoft.EntityFrameworkCore;
+
 
 namespace CarDealershipManagement.Infrastructure.Config
 {

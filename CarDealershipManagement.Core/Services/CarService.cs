@@ -17,7 +17,7 @@ namespace CarDealershipManagement.Core.Services
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<Brand> _brandRepository;
         private readonly IRepository<CarBasis> _carBasisRepository;
-        public CarService(IRepository<Car> carsRepository, IRepository<Order> orderRepository, 
+        public CarService(IRepository<Car> carsRepository, IRepository<Order> orderRepository,
             IRepository<Brand> brandRepository, IRepository<CarBasis> carBasisRepository)
         {
             _carsRepository = carsRepository;
@@ -48,7 +48,7 @@ namespace CarDealershipManagement.Core.Services
             if (!cars.Any())
                 return false;
             var orders = _orderRepository.List(o => cars.Contains(o.CarId)).Count();
-            return !(cars.Count() == orders) ;
+            return !(cars.Count() == orders);
         }
 
         public List<CarDto> GetCarsByCarBasisId(int carBasisId)
@@ -73,7 +73,7 @@ namespace CarDealershipManagement.Core.Services
         {
             var orders = _orderRepository.ListWithIncludes(o => o.Car.CarBasisId == carBasisId, o => o.Car).Select(o => o.Id).ToList();
             List<Car> cars;
-            if(orders.Any())
+            if (orders.Any())
                 cars = _carsRepository.List(c => c.CarBasis.Id == carBasisId && !orders.Contains(c.Id)).ToList();
             else
                 cars = _carsRepository.List(c => c.CarBasis.Id == carBasisId).ToList();
@@ -96,7 +96,7 @@ namespace CarDealershipManagement.Core.Services
                 };
             }
             else return null;
-                
+
         }
 
         public CarDto GetCarById(int id)

@@ -3,6 +3,6 @@
     public class Specification : EntityBase
     {
         public string SpecificationName { get; set; }
-        public double SpecificationValue {  get; set; }
+        public double SpecificationValue { get; set; }
     }
 }

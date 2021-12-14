@@ -20,7 +20,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         {
             int pageSize = 6;
             var skip = (pageNumber - 1) * pageSize;
-            
+
             var cars = _carsService.GetCarsRange(skip, skip + pageSize).Select(c => new CarBasisViewModel()
             {
                 Id = c.Id,
@@ -38,7 +38,7 @@ namespace CarDealershipManagement.WebUI.Controllers
         [HttpGet]
         public IActionResult RouteToDetailsPage(int id)
         {
-            return RedirectToAction("Index", "Catalog", new {CarId = id});
+            return RedirectToAction("Index", "Catalog", new { CarId = id });
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using CarDealershipManagement.Core.ModelsDto;
-using CarDealershipManagement.Core.Interfaces.Repositories;
+﻿using CarDealershipManagement.Core.Interfaces.Repositories;
 using CarDealershipManagement.Core.Interfaces.Services;
 using CarDealershipManagement.Core.Models;
+using CarDealershipManagement.Core.ModelsDto;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,12 +34,12 @@ namespace CarDealershipManagement.Core.Services
         {
             var carSpecifications = _repository.ListWithIncludes(s => s.CarBasisId == carId, s => s.Specification)
                 .Select(s => new CarSpecificationDto
-            {
-                CarId = s.CarBasisId,
-                SpecificationId = s.SpecificationId,
-                SpecificationName = s.Specification.SpecificationName,
-                SpecificationValue = s.Specification.SpecificationValue
-            }).ToList();
+                {
+                    CarId = s.CarBasisId,
+                    SpecificationId = s.SpecificationId,
+                    SpecificationName = s.Specification.SpecificationName,
+                    SpecificationValue = s.Specification.SpecificationValue
+                }).ToList();
             return carSpecifications;
         }
     }
