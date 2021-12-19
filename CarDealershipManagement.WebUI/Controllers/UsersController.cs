@@ -92,14 +92,15 @@ namespace CarDealershipManagement.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
-        /*public IActionResult Create() => View();
+
+        public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateUserViewModel model)
+        public async Task<IActionResult> CreateUser(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { UserName = model.UserName};
+                User user = new User { UserName = model.UserName };
                 var result = await _identityService.AddNewUser(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -116,27 +117,26 @@ namespace CarDealershipManagement.WebUI.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> EditUser(string userId)
         {
-            User user = await _identityService.GetUserById(id);
+            User user = await _identityService.GetUserById(userId);
             if (user == null)
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, Year = user.Year };
+            CreateUserViewModel model = new CreateUserViewModel { Id = user.Id, UserName = user.UserName };
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model)
+        public async Task<IActionResult> EditUser(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
                 User user = await _identityService.GetUserById(model.Id);
                 if (user != null)
                 {
-                    user.Email = model.Email;
-                    user.UserName = model.Email;
+                    user.UserName = model.UserName;
 
                     var result = await _identityService.UpdateUser(user);
                     if (result.Succeeded)
@@ -155,6 +155,5 @@ namespace CarDealershipManagement.WebUI.Controllers
             return View(model);
         }
 
-        */
     }
 }

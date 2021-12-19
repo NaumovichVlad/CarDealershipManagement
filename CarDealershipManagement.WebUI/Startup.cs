@@ -58,7 +58,7 @@ namespace CarDealershipManagement.WebUI
             app.UseDbInitializer();
             app.UseRoleInitializer();
             app.UseRouting();
-
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

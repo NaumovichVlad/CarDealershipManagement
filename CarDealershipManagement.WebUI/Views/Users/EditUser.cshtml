@@ -1,0 +1,18 @@
+﻿@model CarDealershipManagement.WebUI.ViewModels.Users.CreateUserViewModel
+
+<h2 class="pt-3">Редактирование данных о пользователе</h2>
+<form method="post" asp-controller="Users" asp-action="EditUser">
+    <div asp-validation-summary="ModelOnly"></div>
+    <fieldset>
+        @Html.HiddenFor(x => x.Id)
+        <div class="form-group">
+            <label asp-for="UserName">Логин</label><br />
+            <input asp-for="UserName" class="form-control w-25" />
+            <span></span>
+        </div>
+        <div class="pt-3">
+            <p><input type="submit" class="btn btn-primary" value="Сохранить" /></p>
+        </div>
+    </fieldset>
+
+</form>

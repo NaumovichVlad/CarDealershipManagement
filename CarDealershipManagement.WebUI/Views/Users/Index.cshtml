@@ -27,13 +27,15 @@
                         }
                     </td>
                     <td>
-                            <div>
-                                <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="EditRole" asp-route-userid="@user.UserId">Изменить роли</a>
-                                <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-route-id="@user.UserId" asp-action="Delete">Удалить</a>
-                            </div>
+                        <div>
+                            <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="EditRole" asp-route-userid="@user.UserId">Изменить роли</a>
+                            <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="EditUser" asp-route-userid="@user.UserId">Изменить пользователя</a>
+                            <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-route-id="@user.UserId" asp-action="Delete">Удалить</a>
+                        </div>
                     </td>
 
-                </tr>  
+                </tr>
+
             }
         </tbody>
     </table>
